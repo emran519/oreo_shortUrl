@@ -3,7 +3,6 @@
 namespace oreo\lib\db;
 
 use oreo\lib\Config;
-use oreo\lib\db\Db;
 
 use PDO;
 
