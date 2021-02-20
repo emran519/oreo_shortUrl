@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{$web_name}</title>
+    <link href="__HOME__/static/index/css/style.css" rel="stylesheet">
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+</head>
+<body id="page-top" class="home-1">
+<!-- Pre Loader Area start -->
+<div id="preloader">
+    <div class="loader"></div>
+</div>
+<!-- Pre Loader Area End -->
+<!--Main Menu/ Mobile Menu Section-->
+<section class="menu-section-area">
+    <!-- Top Menu -->
+    <!-- Top Menu -->
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top d-none d-sm-none d-md-block d-lg-block d-xl-block" id="mainNav">
+    </nav>
+    <!-- Navigation -->
+</section>
+<!-- Header Start -->
+<header id="home" class="home-banner-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!--Hero Area Wrapper-->
+                <div class="hero-area-wrapper position-relative">
+                    <div class="hero-area-content" id="wrapper">
+                        <h1>{$title}</h1>
+                        <div class="hero-button-box text-center">
+                            <a href="#domain-search" class="js-scroll-trigger theme-button text-capitalize">立刻生成</a>
+                        </div>
+                    </div>
+                    <div id="scroll-bottom" class="scroll-to-bottom">
+                        <a href="#domain-search" class="js-scroll-trigger"><span></span>生成</a>
+                    </div>
+                </div>
+                <!--Hero Area Wrapper-->
+            </div>
+        </div>
+    </div>
+    <!-- Effect Start-->
+    <img class="bubble slow" src="__HOME__/static/index/img/Top_bubble.svg" id="pink-side-bubble-1" alt="b">
+    <img class="bubble" src="__HOME__/static/index/img/Bottom_Bubble.svg" id="pink-side-bubble-2" alt="b">
+    <img class="bubble slow" src="__HOME__/static/index/img/Bog-Blob.svg" id="blue-side-bubble-1" alt="b">
+    <!-- Effect End-->
+    <!-- Wave Effect Start-->
+    <div class="footer-wave"></div>
+    <!-- Wave Effect End-->
+</header>
+<!-- Header End -->
+
+<!-- Domain Name Search Area Start -->
+<section id="domain-search" class="domain-name-search-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!--Domain Search Wrapper Start-->
+                <div class="domain-search-wrapper">
+                    <div class="section-title-area"><h3 class="section-heading">请输入您的链接</h3></div>
+                    <form id="oreoDataAddForm" action="" method="post">
+                        <div class="form-row">
+                            <div class="form-group domain-search-input-wrap position-relative">
+                                <div class="domain-search-custom-placeholder">
+                                    <span id="typed-strings">
+                                        <b>请输入您的目标链接</b>
+                                        <b>请不要输入非法地址</b>
+                                        <b>生成非法地址传播链接将承担法律责任</b>
+                                    </span>
+                                    <span id="typed"></span>
+                                </div>
+                                <input type="text" name="longDomain" class="form-control" placeholder="请输入您的目标链接" id="domain-name">
+                                <input type="hidden" id="token" name="token" value="">
+                            </div>
+                            <div class="form-group">
+                                <div class="select-bar position-relative custom-select">
+                                    <select class="form-control" name="domain_id" id="domain_id">
+                                        <option value=''>选择短链接</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button  onclick="shortDomain()" type="button" class="theme-button">生成</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--Domain Search Wrapper End-->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Footer Start -->
+<footer class="footer-area">
+    <div class="footer-wave"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="footer-newsletter text-center">
+                    <h3>{$web_name}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row copyright-are">
+            <div class="col-12">
+                <div class="copyright-text text-center">
+                    <p>2021 © 基于 <a href="https://github.com/emran519/oreoFrame/" target="_blank">饼干(Oreo)</a>微框架</p>
+                    <p>工信部备案号: <a href="http://beian.miit.gov.cn/" target="_blank">{$icp_num}</a></p>
+                    <ul class="footer-social-links d-flex justify-content-center">
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</footer>
+<!-- Footer End -->
+<!--Go To Top Arrow area start-->
+<div class="top-arrow">
+    <a href="#" id="scroll" style="display: none;"><i class="fas fa-angle-up"></i></a>
+</div>
+<!--Go To Top Arrow area End-->
+
+<!--=======================================
+    All Jquery Script link
+===========================================-->
+
+<!-- Bootstrap core JavaScript -->
+
+<script src="__HOME__/static/index/vendor/js/jquery.min.js"></script>
+<script src="__HOME__/static/index/vendor/js/bootstrap.min.js"></script>
+<script src="__HOME__/static/index/vendor/js/owl.carousel.min.js"></script>
+<script src="__HOME__/static/index/vendor/js/typed.min.js"></script>
+<script src="__HOME__/static/index/vendor/js/wow.min.js"></script>
+<script src="__HOME__/static/index/vendor/js/jquery.counterup.min.js"></script>
+<script src="__HOME__/static/index/vendor/js/venobox.min.js"></script>
+<script src="__HOME__/static/index/vendor/js/custom-select.js"></script>
+<script src="__HOME__/static/index/vendor/js/jquery.meanmenu.min.js"></script>
+<script src="__HOME__/static/index/vendor/js/custom.js"></script>
+<script src="__HOME__/static/index/vendor/js/sweetalert.min.js"></script>
+<script>
+    window.onload = SearchVehicleTag();//加载页面时自动执行方法
+    function SearchVehicleTag(){
+        $.ajax({
+            url:'{fun:ctr("domainList")}',
+            type: "post",
+            dataType: "json",
+            contentType: "application/json",
+            traditional: true,
+            success: function (res) {
+                if(res.code==200){
+                    for (var i = 0; i < res.data.domain.length; i++) {
+                        var jsonObj =res.data.domain[i];
+                        $("#domain_id").append("<option value='"+jsonObj.id+"'>" + jsonObj.domain + "</option>");
+                    }
+                    $('#token').val(res.data.token);
+                }else{
+                    $("#domain_id").append("<option value=''>暂无域名配置</option>");
+                }
+            },
+            error: function (msg) {
+                alert("数据加载出错，请重试！");
+            }
+        });
+    }
+    var typed = new Typed('#typed', {
+        stringsElement: '#typed-strings',
+        typeSpeed: 100,
+        backSpeed: 100,
+        loop: true,
+        smartBackspace: true,
+    });
+    //
+    function shortDomain(){
+        $.ajax({
+            type: "POST",
+            url:'{fun:ctr("shortDomain")}',
+            data: $('#oreoDataAddForm').serialize(),
+            dataType: 'json',
+            success : function(res) {
+                if(res.code == 200){
+                    $('#token').val(res.data.token);
+                   return  swal("生成成功!", res.data.domain, "success");
+                } else {
+                    $('#token').val(res.data.token);
+                    return swal("发送错误!", res.msg, "error");
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$web_name} - 编辑 - 角色</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="__HOME__/static/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__HOME__/static/layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+
+            <div class="layui-card-body" pad15>
+                <form id="systemForm" action="" method="post">
+                    <div class="layui-form" wid100 lay-filter="">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">角色ID</label>
+                            <div class="layui-input-block">
+                                <input type="text" class="layui-input" name="role_code" id="role_id" disabled>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">角色名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="role_name" class="layui-input" id="role_name">
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">描述</label>
+                            <div class="layui-input-block">
+                                <textarea name="represent" class="layui-textarea" id="represent"> </textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="addItem" >确认修改</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="__HOME__/static/layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '__HOME__/static/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use([ 'index', 'form'],function() {
+        var $ = layui.$
+            ,form = layui.form;
+        //-----------------处理结束--------------------//
+        //Ajax设置
+        $.ajaxSetup({
+            type: 'POST',
+            dataType : "json",
+            cache:false,
+            crossDomain: true,
+            // 发送cookie
+            xhrFields: {
+                withCredentials: true
+            },
+        });
+        form.on('submit(addItem)', function(data){
+            //使用ajax发送请求
+            $.ajax({
+                url:  '{fun:ctr("../Auth/editAdminRoleData")}',
+                data:data.field,
+                success:function(data){
+                    if(data.code == 200){
+                        layer.msg(data.msg, {icon: 1});
+                        window.setTimeout(function () {
+                            var index = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(index);
+                        }, 1000);
+                    }else if(data.code == -7){
+                        layer.msg(data.msg, {icon: 2});
+                        window.setTimeout(function () {
+                            top.location = '{fun:ctr("../../Login")}';
+                        }, 1000);
+                    }else{
+                        layer.msg(data.msg, {icon: 2});
+                    }
+                },
+                error: function(data){
+                    console.log(data);
+                    layer.msg('数据异常，操作失败！');
+                },
+            });
+            return false;  //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+    });
+</script>
+</body>
+</html>

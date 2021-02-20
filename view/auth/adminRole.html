@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$web_name}-角色列表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="__HOME__/static/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__HOME__/static/layuiadmin/style/admin.css" media="all">
+    <style type="text/css">
+        .layui-table-cell{
+            text-align: center;
+            height: auto;
+            white-space: normal;
+        }
+    </style>
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-useradmin" data-type="add">添加</button>
+            </div>
+
+            <table id="LAY-items-manage" lay-filter="LAY-items-manage"></table>
+            <script type="text/html" id="table-applet-user">
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="auth"><i class="layui-icon layui-icon-edit"></i>权限</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-set-sm"></i>删除</a>
+            </script>
+            <!--这个是选择框tpl-->
+            <script type="text/html" id="show_tpl">
+                <input type="checkbox"  user_id="{{d.id}}"  lay-skin="switch" lay-text="激活|封禁"  lay-filter="thisStatus" {{d.status==1?'checked':''}} >
+            </script>
+        </div>
+    </div>
+</div>
+
+<script src="__HOME__/static/layuiadmin/layui/layui.js"></script>
+<script>
+    //layer组件
+    layui.config({
+        base: '__HOME__/static/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: '/lib/index' //主入口模块
+    }).use(['form','index', 'useradmin', 'table', 'jquery'], function(){
+        var $ = layui.$
+            ,form = layui.form
+            ,table = layui.table;
+        //
+        form.on('select(thisSearch)', function(data){
+            var val=data.value;
+            var inputs  = $("#is_val");
+            if(val=='thisNoSettle'){
+                $(inputs).hide();
+            }else{
+                $(inputs).show();
+            }
+        });
+        //Ajax设置
+        $.ajaxSetup({
+            type: 'POST',
+            dataType : "json",
+            cache:false,
+            crossDomain: true,
+            // 发送cookie
+            xhrFields: {
+                withCredentials: true
+            },
+        });
+        //table事件开始
+        table.render({
+            elem: '#LAY-items-manage',
+            url:  '{fun:ctr("adminRoleList")}',
+            cols: [
+                [
+                    {field: 'id', title: '角色ID',  sort: true},
+                    {field: 'role_name', title: '角色名称', minWidth: 100 },
+                    {field: 'represent',  title: '描述' },
+                    {field: 'create_time',  title: '创建时间' },
+                    {field: 'update_time', title: '修改时间' },
+                    {title: '操作', toolbar: '#table-applet-user'}
+                ]
+            ],
+            id:'itemList',
+            page: true,
+            limit: 30,
+            height: 'full-220',
+            text: '对不起，加载出现异常！',
+            done: function (res) {
+                if (res.code == 403) {
+                    location.href = '{fun:ctr("../Iframe/errorHelp")}';
+                }else if (res.code == 407) {
+                    location.href = '{fun:ctr("../Iframe/error_state")}';
+                }else if (res.code == -2) {
+                    layer.msg(res.msg, {icon: 2});
+                    window.setTimeout(function () {
+                        top.location = '{fun:ctr("../Login")}';
+                    }, 1000);
+                }
+            }
+        });
+        //table事件结束
+        //事件
+        var active = {
+            add: function(){
+                parent.layer.open({
+                    type: 2,
+                    title: '添加角色',
+                    shadeClose: true,
+                    shade: 0.8,
+                    area: ['65%', '75%'],
+                    content: '{fun:ctr("../Iframe/addAdminRole")}',
+                });
+            },end:function(){
+                location.reload();
+            }
+        };
+        $('.layui-btn.layuiadmin-btn-useradmin').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+        //编辑，删除，发布申请
+        //监听行工具事件
+        table.on('tool(LAY-items-manage)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'edit'){
+                parent.layer.open({
+                    type: 2,
+                    title: '编辑 '+data.role_name+ '内容',
+                    shadeClose: true,
+                    shade: 0.8,
+                    area: ['75%', '75%'],
+                    content: '{fun:ctr("../Iframe/editAdminRolePage")}',
+                    success:function(layero,index){
+                        var role_name = $("#role_name", layero.find("iframe")[0].contentWindow.document);
+                        var role_id = $("#role_id", layero.find("iframe")[0].contentWindow.document);
+                        var represent = $("#represent", layero.find("iframe")[0].contentWindow.document);
+                        role_name.attr("value", data.role_name );
+                        role_id.attr("value", data.id );
+                        represent.val(data.represent);
+                    }
+                });
+            }else if(obj.event === "auth"){
+                parent.layer.open({
+                    type: 2,
+                    title: '设置 '+data.role_name+ ' 权限',
+                    shadeClose: true,
+                    shade: 0.8,
+                    area: ['75%', '75%'],
+                    content: '{fun:ctr("../Iframe/editRoleAuthPage")}',
+                    success:function(layero,index){
+                        var role_id = $("#role_id", layero.find("iframe")[0].contentWindow.document);
+                        role_id.attr("value", data.id );
+                    }
+                });
+            }else if(obj.event === "del"){
+                layer.confirm('删除角色将删除该角色外还删除角色的权限以及该角色所属的账号?', function(index){
+                    $.ajax({
+                        url: '{fun:ctr("delAdminRoleData")}',
+                        data:{role_id:data.id},
+                        success:function(data){
+                            if(data.code == 200){
+                                layer.msg(data.msg, {icon: 1});
+                                window.setTimeout(function () {
+                                    window.location.reload();
+                                }, 500);
+                            }else if(data.code == -2){
+                                layer.msg(data.msg, {icon: 2});
+                                window.setTimeout(function () {
+                                    top.location = '{fun:ctr("../Login")}';
+                                }, 1000);
+                            }else{
+                                layer.msg(data.msg, {icon: 2});
+                            }
+                        },
+                        error: function(data){
+                            console.log(data);
+                            layer.msg('数据异常，操作失败！');
+                        },
+                    });
+                    layer.close(index);
+                });
+            }
+        });
+
+    });
+</script>
+</body>
+</html>
