@@ -30,7 +30,7 @@ class Index extends Controller
 
     public function index(string $msg = null){
         return view('index', [
-            'title' => $msg?:'免费生成您的短链接',
+            'title' => $msg?:'免费生成您的短网址',
             'web_name' => $this->systemInfo('web_name')['value'],
             'icp_num' => $this->systemInfo('icp_num')['value']
         ]);
@@ -57,11 +57,11 @@ class Index extends Controller
             $target = "http://" . $target;
         }
         //验证
-        if(empty($domainId))return json(0,'请选择短连接域名',['token'=>Csrf::token('token')]);
+        if(empty($domainId))return json(0,'请选择短网址域名',['token'=>Csrf::token('token')]);
         if(empty($target))return json(0,'请填写目标地址',['token'=>Csrf::token('token')]);
         //查询域名是否激活
         $res = Db::table('domain')->where("id=:id")->bind(':id',$domainId)->find();
-        if(empty($res)) return json(0,'当前短连接不存在，请切换其他',['token'=>Csrf::token('token')]);
+        if(empty($res)) return json(0,'当前短网址不存在，请切换其他',['token'=>Csrf::token('token')]);
         //进行编码
         $base_Domain =  base64_encode($target);
         //查询
@@ -106,14 +106,14 @@ class Index extends Controller
             ]);
         }
         if(empty($url['sql'])) {
-            return $this->index('当前短链接不存在');
+            return $this->index('当前短网址不存在');
         }
         if($url['sql']['domain'] != request()->host()){
-            return $this->index('当前短链接错误');
+            return $this->index('当前短网址错误');
         }
         if($url['sql']['cycle']!=0){
             if($url['sql']['end_time']<=time()){
-                return $this->index('当前短链接失效');
+                return $this->index('当前短网址失效');
             }
         }
         $longUrl = base64_decode($url['sql']['target']);

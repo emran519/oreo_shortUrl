@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>{$web_name}-域名配置-短连接列表</title>
+    <title>{$web_name}-域名配置-短网址列表</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin">
@@ -93,7 +93,7 @@
                     {field: 'id', title: '标识',  sort: true},
                     {field: 'domain_id', title: '域名ID', hide:true},
                     {field: 'domain', title: '所属短域名'},
-                    {field: 'address', title: '短连接'},
+                    {field: 'address', title: '短网址'},
                     {field: 'cycle', title: '生命周期/天', sort: true, templet: function(d){
                             if(d.cycle==0){
                                 return  '不限制';
@@ -162,7 +162,7 @@
             }
         };
         $('.layui-btn.layuiadmin-btn-useradmin').on('click', function(){
-            layer.confirm('确定删除全部失效短链接吗?', function(index){
+            layer.confirm('确定删除全部失效短网址吗?', function(index){
                 $.ajax({
                     url: '{fun:ctr("delAllShortDomain")}',
                     data:{},
@@ -218,7 +218,7 @@
                     layer.close(index);
                 });
             }else if(obj.event === "del"){
-                layer.confirm('确定删除，短连接: /' +data.address +' ?', function(index){
+                layer.confirm('确定删除，短网址: /' +data.address +' ?', function(index){
                     $.ajax({
                         url: '{fun:ctr("delShortDomain")}',
                         data:{id:data.id},

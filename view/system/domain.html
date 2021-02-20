@@ -172,7 +172,7 @@
                     }
                 });
             }else if(obj.event === "del"){
-                layer.confirm('这将会同时删除已经生成的相关短链接', function(index){
+                layer.confirm('这将会同时删除已经生成的相关短网址', function(index){
                     $.ajax({
                         url: '{fun:ctr("delDomainData")}',
                         data:{id:data.id},

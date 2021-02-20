@@ -103,12 +103,12 @@ class Domain extends Controller
         return json(0,'删除失败');
     }
 
-    //域名配置-短连接列表
+    //域名配置-短网址列表
     public function shortDomain(){
         return \oreo\lib\View::display('system/shortDomain');
     }
 
-    //域名配置-短连接列表
+    //域名配置-短网址列表
     public function shortDomainList(){
         $limit = request()->get('limit/d',1);//如果有范围就默认范围否则为范围为1
         $page = intval( (request()->get('page/d',1) - 1) * $limit);
@@ -128,7 +128,7 @@ class Domain extends Controller
         return ['code'=>'200','msg'=>'获取成功','count'=>$count_list,'data'=>$list];
     }
 
-    //域名配置-短连接列表-续签
+    //域名配置-短网址列表-续签
     public function ShortDomainTime(){
         $id = request()->post('id'); //id
         $cycle = request()->post('cycle/d',0);//续签生命周期
@@ -147,7 +147,7 @@ class Domain extends Controller
         return json(200,'续签成功');
     }
 
-    //域名配置-短连接列表-删除
+    //域名配置-短网址列表-删除
     public function delShortDomain(){
         $id = request()->post('id'); //id
         if(!$id) return json(0,'Id不能为空');
@@ -155,7 +155,7 @@ class Domain extends Controller
         return json(200,'删除成功');
     }
 
-    //域名配置-短连接列表-删除全部失效链接
+    //域名配置-短网址列表-删除全部失效链接
     public function delAllShortDomain(){
         $now = time();
         $res = Db::table('domain_text')->alias('a')
@@ -164,7 +164,7 @@ class Domain extends Controller
             ->bind([':cycle'=>0,':end_time'=>$now])
             ->field('a.id')
             ->all();
-        if(empty($res))return json(0,'未发现失效短链接');
+        if(empty($res))return json(0,'未发现失效短网址');
         $ids = array();
         for ($i = 0; $i < count($res); $i++) {
             $ids[$i] = $res[$i]['id'];
