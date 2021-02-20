@@ -26,7 +26,7 @@ class Query {
         if (self::$db == null) {
             self::$db_type = $dbConfig['type'];
             $dns  = $dbConfig['type'] . ':dbname=' . $dbConfig['database'] . ';host=';
-            $dns .= $dbConfig['host'] . ';charset=utf8';
+            $dns .= $dbConfig['host'] . ';port='   . $dbConfig['port'] . ';charset=utf8';
             self::$db = new PDO($dns, $dbConfig['user'], $dbConfig['password']);
             self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             self::$db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
