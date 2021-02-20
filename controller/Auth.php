@@ -118,7 +118,9 @@ class Auth extends Controller
         $data = [
             'user_id'=>$_SESSION['admin_info']['id'],
             'role_name'=>request()->post('role_name'),
-            'represent'=>request()->post('represent')
+            'represent'=>request()->post('represent'),
+            'create_time'=>date('Y-m-d H:i:s'),
+            'update_time'=>date('Y-m-d H:i:s')
         ];
         Db::table('auth_role')->insert($data);
         return json(200,'添加成功');
@@ -175,8 +177,14 @@ class Auth extends Controller
         if(!request()->post('thisStatus')) return json(0,'状态不能为空');
         //新增
         if(request()->post('thisStatus')==1){
+            $param = [
+                'user_id' => request()->post('role_id'),
+                'menu_id' => request()->post('menu_id'),
+                'create_time'=>date('Y-m-d H:i:s'),
+                'update_time'=>date('Y-m-d H:i:s')
+            ];
             Db::table('auth_permission')
-                ->insert(['user_id' => request()->post('role_id'), 'menu_id' => request()->post('menu_id')]);
+                ->insert($param);
         }else{
             Db::table('auth_permission')
                 ->where( ['user_id'=>request()->post('role_id'),'menu_id'=>request()->post('menu_id')])

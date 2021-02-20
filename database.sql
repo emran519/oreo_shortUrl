@@ -1,5 +1,5 @@
 -- 主机： localhost
--- 生成日期： 2021-02-21 01:09:13
+-- 生成日期： 2021-02-21 02:07:52
 -- 服务器版本： 8.0.20
 -- PHP 版本： 7.4.9
 
@@ -44,7 +44,7 @@ CREATE TABLE `oreo_auth_admin` (
   `user_phone` varchar(18) DEFAULT NULL COMMENT '手机号码',
   `user_email` varchar(125) DEFAULT NULL COMMENT '用户邮箱',
   `state` tinyint NOT NULL COMMENT '1=>正常;2=>封禁',
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间',
+  `create_time` datetime NOT NULL COMMENT '添加时间',
   `last_login_time` datetime DEFAULT NULL COMMENT '最近登录时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -70,8 +70,8 @@ CREATE TABLE `oreo_auth_menu` (
   `parent_id` int NOT NULL DEFAULT '0' COMMENT '父级菜单,默认根菜单',
   `is_menu` int NOT NULL DEFAULT '1' COMMENT '是否显示在菜单上（0：不显示在菜单上，1：显示在菜单上。默认显示在菜单上）',
   `spread` int DEFAULT NULL COMMENT '1=>展开;0=>不展开',
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
   `sort` int DEFAULT '1' COMMENT '排序',
   `icon` varchar(64) DEFAULT NULL COMMENT '图标'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='菜单表 ';
@@ -124,8 +124,8 @@ CREATE TABLE `oreo_auth_permission` (
   `id` int NOT NULL COMMENT '主键',
   `user_id` int NOT NULL DEFAULT '1' COMMENT '角色ID',
   `menu_id` int NOT NULL DEFAULT '1' COMMENT '菜单ID',
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间'
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限表';
 
 --
@@ -155,7 +155,6 @@ INSERT INTO `oreo_auth_permission` (`id`, `user_id`, `menu_id`, `create_time`, `
 (29, 1, 31, '2021-02-18 03:11:14', '2021-02-18 03:11:14'),
 (30, 1, 32, '2021-02-18 03:37:18', '2021-02-18 03:37:18'),
 (31, 1, 33, '2021-02-18 03:41:44', '2021-02-18 03:41:44'),
-(32, 1, 19, '2021-02-20 11:32:15', '2021-02-20 11:32:15'),
 (33, 1, 34, '2021-02-20 11:57:57', '2021-02-20 11:57:57'),
 (34, 1, 35, '2021-02-21 00:28:10', '2021-02-21 00:28:10'),
 (35, 1, 36, '2021-02-21 00:30:04', '2021-02-21 00:30:04'),
@@ -164,7 +163,8 @@ INSERT INTO `oreo_auth_permission` (`id`, `user_id`, `menu_id`, `create_time`, `
 (38, 1, 39, '2021-02-21 00:34:19', '2021-02-21 00:34:19'),
 (39, 1, 40, '2021-02-21 00:34:19', '2021-02-21 00:34:19'),
 (40, 1, 41, '2021-02-21 00:34:20', '2021-02-21 00:34:20'),
-(41, 1, 42, '2021-02-21 00:34:20', '2021-02-21 00:34:20');
+(41, 1, 42, '2021-02-21 00:34:20', '2021-02-21 00:34:20'),
+(43, 1, 19, '2021-02-21 02:04:06', '2021-02-21 02:04:06');
 
 -- --------------------------------------------------------
 
@@ -177,8 +177,8 @@ CREATE TABLE `oreo_auth_role` (
   `role_name` varchar(32) NOT NULL DEFAULT '' COMMENT '角色名称',
   `user_id` int NOT NULL DEFAULT '1' COMMENT '创建人',
   `represent` varchar(125) DEFAULT NULL COMMENT '描述',
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间'
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色表';
 
 --
@@ -201,7 +201,7 @@ CREATE TABLE `oreo_domain` (
   `safe` int NOT NULL DEFAULT '2' COMMENT '防红;1=>开;2=>关闭',
   `safe_tpl` varchar(18) DEFAULT NULL COMMENT '模板名称',
   `state` tinyint NOT NULL COMMENT '1=>正常:2=>停止',
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '添加时间'
+  `create_time` datetime DEFAULT NULL COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统域名列表';
 
 -- --------------------------------------------------------
@@ -317,7 +317,7 @@ ALTER TABLE `oreo_admin_log`
 -- 使用表AUTO_INCREMENT `oreo_auth_admin`
 --
 ALTER TABLE `oreo_auth_admin`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT '唯一ID', AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT '唯一ID', AUTO_INCREMENT=2;
 
 --
 -- 使用表AUTO_INCREMENT `oreo_auth_menu`
@@ -329,19 +329,19 @@ ALTER TABLE `oreo_auth_menu`
 -- 使用表AUTO_INCREMENT `oreo_auth_permission`
 --
 ALTER TABLE `oreo_auth_permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=42;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT '主键', AUTO_INCREMENT=44;
 
 --
 -- 使用表AUTO_INCREMENT `oreo_auth_role`
 --
 ALTER TABLE `oreo_auth_role`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT '唯一ID', AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT '唯一ID', AUTO_INCREMENT=2;
 
 --
 -- 使用表AUTO_INCREMENT `oreo_domain`
 --
 ALTER TABLE `oreo_domain`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT '唯一ID';
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT '唯一ID', AUTO_INCREMENT=2;
 
 --
 -- 使用表AUTO_INCREMENT `oreo_domain_text`
