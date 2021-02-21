@@ -272,8 +272,7 @@ class Auth extends Controller
         }
         if($data['password']){
             $password = preg_replace('/[ ]/', '', $data['password']);//登录密码
-            $salt = md5(\config("app.admin_salt").$password);
-            $param['password'] = md5($password.$salt);
+            $param['password'] = md5(\config("app.admin_salt").$password);
         }
         $param['real_name'] = $data['real_name'];
         $param['user_phone'] = $data['user_phone'];
