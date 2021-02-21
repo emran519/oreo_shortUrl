@@ -193,7 +193,7 @@
                    return  swal("生成成功!", res.data.domain, "success");
                 } else {
                     $('#token').val(res.data.token);
-                    return swal("发送错误!", res.msg, "error");
+                    return swal("发生错误!", res.msg, "error");
                 }
             }
         });

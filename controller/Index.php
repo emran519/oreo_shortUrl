@@ -10,7 +10,6 @@ use oreo\lib\safe\VerifyCsrf;
 
 class Index extends Controller
 {
-
     public function __construct(){
         parent::__construct();
         $web_mode = $this->systemInfo('system_state')['value'];
@@ -28,6 +27,14 @@ class Index extends Controller
         }
     }
 
+    /**
+     * 首页
+     * author : 饼干<609451870@qq.com>
+     * date : 2021/2/21 16:39
+     *
+     * @param string|null $msg 内容
+     * @return false|string|null
+     */
     public function index(string $msg = null){
         return view('index', [
             'title' => $msg?:'免费生成您的短网址',
@@ -36,6 +43,13 @@ class Index extends Controller
         ]);
     }
 
+    /**
+     * 域名列表
+     * author : 饼干<609451870@qq.com>
+     * date : 2021/2/21 16:39
+     *
+     * @return false|string
+     */
     public function domainList(){
         $domain = Db::table('domain')->field('id,domain')->where('state',1)->all();
         if(empty($domain))return json(0,'暂无短域名','暂无短域名');
@@ -59,6 +73,14 @@ class Index extends Controller
         //验证
         if(empty($domainId))return json(0,'请选择短网址域名',['token'=>Csrf::token('token')]);
         if(empty($target))return json(0,'请填写目标地址',['token'=>Csrf::token('token')]);
+        //域名截取(禁止套娃)
+        $short = substr($target,strripos($target,"/")+1);
+        $shortUrl = Db::table('domain_text')->where("address=:address")->bind(':address',$short)->find();
+        if(!empty($shortUrl))return json(0,'本站短网址不能再次生成操作',['token'=>Csrf::token('token')]);
+        return $this->saveShortUrl($domainId, $target);
+    }
+
+    private function saveShortUrl(int $domainId, string $target) : string{
         //查询域名是否激活
         $res = Db::table('domain')->where("id=:id")->bind(':id',$domainId)->find();
         if(empty($res)) return json(0,'当前短网址不存在，请切换其他',['token'=>Csrf::token('token')]);
