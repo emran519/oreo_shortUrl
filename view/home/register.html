@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>注册帐号</title>
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="__HOME__/static/home/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__HOME__/static/home/css/style.css">
+</head>
+<body>
+
+<!-- Main Wrapper -->
+<div class="main-wrapper login-body">
+
+    <div class="login-wrapper">
+        <div class="container">
+            <img class="img-fluid logo-dark mb-2" src="__HOME__/static/index/img/logo.png" alt="Logo">
+
+            <div class="loginbox">
+                <div class="login-right">
+                    <div class="login-right-wrap">
+                        <h1>注册</h1>
+                        <p class="account-subtitle">享用更多的功能</p>
+
+                        <!-- Form -->
+                        <form id="oreoDataAddForm" action="" method="post">
+                            <div class="form-group">
+                                <label class="form-control-label">帐号</label>
+                                <input class="form-control" type="text" name="username" placeholder="仅允许输入英文">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">邮箱</label>
+                                <input class="form-control" type="email" name="contact">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">密码</label>
+                                <input class="form-control" type="text" name="password">
+                            </div>
+                            <div class="form-group mb-0">
+                                <button class="btn btn-lg btn-block btn-primary" type="button" onclick="shortDomain()">注册</button>
+                            </div>
+                        </form>
+                        <!-- /Form -->
+
+                        <!--<div class="login-or">
+                            <span class="or-line"></span>
+                            <span class="span-or">or</span>
+                        </div>-->
+                        <!-- Social Login -->
+                      <!--  <div class="social-login">
+                            <span>Register with</span>
+                            <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a><a href="#" class="google"><i class="fab fa-google"></i></a>
+                        </div>-->
+                        <!-- /Social Login -->
+                        <div class="text-center dont-have">已经有帐号? <a href="login.html">登录</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /Main Wrapper -->
+
+<!-- jQuery -->
+<script src="__HOME__/static/layuiadmin/jquery.min.js"></script>
+<script src="__HOME__/static/index/js/sweetalert.min.js"></script>
+<script>
+    function shortDomain(){
+        $.ajax({
+            type: "POST",
+            url:'{fun:ctr("regUser")}',
+            data: $('#oreoDataAddForm').serialize(),
+            dataType: 'json',
+            success : function(res) {
+                if(res.code == 200){
+                    swal("注册成功", {
+                        icon: "success",
+                    }).then(function () {
+                        window.setTimeout(function () {
+                            top.location = '{fun:ctr("../Login")}';
+                        }, 1000);
+                    });
+                } else {
+                    return swal("发生错误!", res.msg, "error");
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

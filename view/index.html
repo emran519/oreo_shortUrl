@@ -1,158 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="js alert__has-cookie was-resized" style="--vh:9.38px;" lang="en-US">
 <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8"><meta name="google" value="notranslate">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
     <title>{$web_name}</title>
-    <link href="__HOME__/static/index/css/style.css" rel="stylesheet">
-    <script src="__HOME__/static/index/vendor/js/html5shiv.min.js"></script>
-    <script src="__HOME__/static/index/vendor/js/respond.min.js"></script>
+    <link rel="stylesheet" id="theme_css-css" href="__HOME__/static/index/css/style.css" type="text/css" media="all">
+    <style>
+        .shortButton{
+            width:100%;
+            padding:16.5px 25px;
+            color:#fff;
+            border-color:#0a2458;
+            background:#0a2458;
+            display:inline-flex;
+            text-decoration:none;
+            align-content:center;
+            justify-content:center;
+            align-items:center;
+            border-radius:100px;
+            transition:.2s ease;
+            text-align:center;
+            border:2px solid #0064bc;
+            line-height:120%;
+        }
+        button:hover{background-color: #0f3786}
+    </style>
 </head>
-<body id="page-top" class="home-1">
-<!-- Pre Loader Area start -->
-<div id="preloader">
-    <div class="loader"></div>
+<div class="acctoggle" role="toolbar" aria-label="High Contrast and Font Size Options">
+    <div class="acctoggle__ctrl">
+        <div class="tool">
+            <span>切换对比度</span>
+        </div>
+        <button class="acctoggle__contrast">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.7 28.7" role="img" aria-labelledby="high-contrast-svg-title">
+                <title id="high-contrast-svg-title">
+                    切换对比度
+                </title>
+                <path d="M14.3 0C6.5 0 0 6.5 0 14.3c0 7.9 6.5 14.3 14.3 14.3 7.9 0 14.3-6.5 14.3-14.3C28.7 6.5 22.2 0 14.3 0zm0 3.6c6 0 10.8 4.8 10.8 10.8 0 6-4.8 10.8-10.8 10.8V3.6z"></path>
+            </svg>
+        </button>
+    </div>
+    <div class="acctoggle__ctrl">
+        <div class="tool">
+            <span>切换字体大小</span>
+        </div>
+        <button class="acctoggle__fontsize">
+            <svg viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="large-font-svg-title">
+                <title id="large-font-svg-title">
+                    切换字体大小</title>
+                <path d="M10.667 2.637v15.825H8V2.637H0V0h18.667v2.637h-8zM24 9.231h-9.333v2.637H18v6.594h2.667v-6.594H24V9.231z" fill="currentColor"></path>
+            </svg>
+        </button>
+    </div>
 </div>
-<!-- Pre Loader Area End -->
-<!--Main Menu/ Mobile Menu Section-->
-<section class="menu-section-area">
-    <!-- Top Menu -->
-    <!-- Top Menu -->
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top d-none d-sm-none d-md-block d-lg-block d-xl-block" id="mainNav">
-    </nav>
-    <!-- Navigation -->
-</section>
-<!-- Header Start -->
-<header id="home" class="home-banner-area position-relative">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <!--Hero Area Wrapper-->
-                <div class="hero-area-wrapper position-relative">
-                    <div class="hero-area-content" id="wrapper">
-                        <h1>{$title}</h1>
-                        <div class="hero-button-box text-center">
-                            <a href="#domain-search" class="js-scroll-trigger theme-button text-capitalize">立刻生成</a>
+<div class="alert-bar"></div>
+<div id="page" class="site-wrap">
+    <header id="masthead" data-js-social-hide="" class="site-header sticky-header cond-front">
+        <div class="site-header__inner">
+            <div class="container-fluid">
+                <div class="row site-header__row justify-content-between align-items-stretch">
+                    <div class="site-header__item site-header__main-logo">
+                        <a class="site-header__item_inner" href="https://www.2free.cn/" rel="home">
+                            <div class="desktop__logo">
+                                <span>{$web_name}</span>
+                            </div>
+                            <div class="desktop__logo ">
+                                <span>111</span>
+                            </div>
+                            <div class="mobile__logo">
+                                <span class="screen-reader-text">{$web_name}</span>
+                                {$web_name}
+                            </div>
+                        </a>
+                    </div><!-- main-logo -->
+                    <div class="center-logo">
+                        <a class="" href="https://www.2free.cn/" rel="home">
+                            <span class="screen-reader-text">饼干短网址</span>
+                            <img  src="__HOME__/static/index/img/logo.png">
+                        </a>
+                    </div>
+                    <!--<form data-searchform="" role="search" method="get" class="search-form" action="https://www.2free.cn/">
+                <label for="search-field-id-6033678f5c80b"><span class="screen-reader-text">To search this site, enter a search term</span></label>
+                <button class="search-close-icon" aria-label="Close" aria-hidden="true">
+                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1.26074" width="16.2296" height="1" transform="rotate(45 1.26074 0)" fill="black"></rect>
+            <rect x="0.737305" y="11.5178" width="16.2296" height="1" transform="rotate(-45 0.737305 11.5178)" fill="black"></rect>
+            </svg>
+                </button>
+                <button class="search-icon" aria-label="Search"><svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="17" cy="17" r="17" fill="black"></circle>
+            <path d="M15.7545 21.3039C16.9965 21.305 18.2026 20.8872 19.1779 20.118L22.8589 23.8L23.8002 22.8584L20.1192 19.1764C20.8936 18.1878 21.3101 16.9659 21.3006 15.71C21.2911 14.4542 20.8563 13.2386 20.067 12.2619C19.2778 11.2852 18.1808 10.605 16.9552 10.3324C15.7296 10.0598 14.4479 10.2109 13.3192 10.761C12.1906 11.3112 11.2817 12.2278 10.7411 13.3613C10.2005 14.4948 10.06 15.7782 10.3427 17.0018C10.6253 18.2255 11.3144 19.3171 12.2973 20.0985C13.2802 20.8798 14.499 21.3048 15.7545 21.3039ZM15.7545 11.5325C16.5888 11.5325 17.4043 11.7799 18.098 12.2436C18.7917 12.7072 19.3324 13.3662 19.6516 14.1372C19.9709 14.9082 20.0544 15.7566 19.8917 16.5751C19.7289 17.3936 19.3272 18.1454 18.7372 18.7356C18.1473 19.3257 17.3957 19.7275 16.5774 19.8903C15.7592 20.0531 14.911 19.9696 14.1402 19.6502C13.3695 19.3309 12.7107 18.79 12.2472 18.0961C11.7837 17.4023 11.5363 16.5865 11.5363 15.7519C11.5363 14.6329 11.9807 13.5596 12.7718 12.7683C13.5628 11.977 14.6357 11.5325 15.7545 11.5325Z" fill="white"></path>
+            </svg>
+            </button>
+                <input class="search-field" id="search-field-id-6033678f5c80b" type="text" name="s" aria-required="false" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" required="" placeholder="Search…">
+                <button class="search-submit" aria-hidden="true"><svg width="63" height="68" viewBox="0 0 63 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0.00171813 0L63 33.7444C63 33.7444 0.660551 67.4376 0.00520349 67.9931L0.00171813 68C-0.0014293 68 -0.000243773 67.9977 0.00520349 67.9931L17.0642 34L0.00171813 0Z" fill="currentColor"></path>
+            </svg>
+            <span class="screen-reader-text">Search</span></button>
+            </form>-->
+                </div>
+            </div>
+        </div>
+    </header>
+    <main id="content" class="site-main">
+        <section class="homepage-content post-1082 homepage type-homepage status-publish hentry">
+            <section data-module="" class="module module__full-width-featured-content last-module seenSection">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="wrapper">
+                            <div class="image-wrapper">
+                                <img src="__HOME__/static/index/img/bg.jpg" class="lazy-load object-fit-cover" loading="lazy" data-sizes="(max-width: 2360px) 100vw, 2360px" height="1180"></div>
+                            <div class="overlay">
+                            </div>
+                            <div class="featured-content-label">
+                                <p class="ui-label-base">免费开源系统</p>
+                            </div>
+                            <div class="content-wrapper col col-xs-12 col-md-8">
+                                <div class="fwfc__inner-content">
+                                    <h2 class="h1large">{$msg}</h2>
+                                    <hr>
+                                    <!--<a href="" class="btn">
+                                        Read the plan
+                                    </a>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end .row -->
+                </div><!-- end .container -->
+            </section>
+        </section>
+
+        <section class="bottomcta">
+            <div class="container">
+                <div class="row">
+                    <div class="bottomcta-wrapper">
+                        <div class="bottom-cta-logo">
+                            <img src="__HOME__/static/index/img/logo2.png">
+                        </div>
+                        <div class="col-xs-2 col-md-8 bottomcta__form">
+                            <div class="bottomcta__form__inner">
+                                <div class="bottomcta__form__inner__wrapper">
+                                    <div id="mc_embed_signup">
+                                        <h2 class="h4alt form-headline">生成短网址</h2>
+                                        <form id="oreoDataAddForm" action="" method="post">
+                                            <fieldset>
+                                                <div id="mc_embed_signup_scroll">
+                                                    <div class="mc-field-group email">
+                                                        <label for="mce-longDomain">目标网址<span class="asterisk">*</span></label>
+                                                        <input type="text" name="longDomain" placeholder="请输入目标网站" required="" id="mce-longDomain">
+                                                        <input type="hidden" id="token" name="token" value="">
+                                                    </div>
+                                                    <div class="mc-field-group zip">
+                                                        <label >选择短网址</label>
+                                                        <select name="domain_id" id="domain_id" class="select-wrapper">
+                                                            <option value=''>选择短网址</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="clear submit-wrapper">
+                                                        <button onclick="shortDomain()" type="button" class="shortButton">转换</button>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div id="scroll-bottom" class="scroll-to-bottom">
-                        <a href="#domain-search" class="js-scroll-trigger"><span></span>生成</a>
-                    </div>
                 </div>
-                <!--Hero Area Wrapper-->
             </div>
+        </section>
+    </main><!-- .site-main -->
+    <footer id="colophon" data-js-social-hide="" class="social-hide site-footer body-copy">
+        <div class="seal-icon-wrapper">
+            <img src="__HOME__/static/index/img/end.png">
         </div>
-    </div>
-    <!-- Effect Start-->
-    <img class="bubble slow" src="__HOME__/static/index/img/Top_bubble.svg" id="pink-side-bubble-1" alt="b">
-    <img class="bubble" src="__HOME__/static/index/img/Bottom_Bubble.svg" id="pink-side-bubble-2" alt="b">
-    <img class="bubble slow" src="__HOME__/static/index/img/Bog-Blob.svg" id="blue-side-bubble-1" alt="b">
-    <!-- Effect End-->
-    <!-- Wave Effect Start-->
-    <div class="footer-wave"></div>
-    <!-- Wave Effect End-->
-</header>
-<!-- Header End -->
-
-<!-- Domain Name Search Area Start -->
-<section id="domain-search" class="domain-name-search-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <!--Domain Search Wrapper Start-->
-                <div class="domain-search-wrapper">
-                    <div class="section-title-area"><h3 class="section-heading">请输入您的链接</h3></div>
-                    <form id="oreoDataAddForm" action="" method="post">
-                        <div class="form-row">
-                            <div class="form-group domain-search-input-wrap position-relative">
-                                <div class="domain-search-custom-placeholder">
-                                    <span id="typed-strings">
-                                        <b>请输入您的目标链接</b>
-                                        <b>请不要输入非法地址</b>
-                                        <b>生成非法地址传播链接将承担法律责任</b>
-                                    </span>
-                                    <span id="typed"></span>
-                                </div>
-                                <input type="text" name="longDomain" class="form-control" placeholder="请输入您的目标链接" id="domain-name">
-                                <input type="hidden" id="token" name="token" value="">
-                            </div>
-                            <div class="form-group">
-                                <div class="select-bar position-relative custom-select">
-                                    <select class="form-control" name="domain_id" id="domain_id">
-                                        <option value=''>选择短网址</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button  onclick="shortDomain()" type="button" class="theme-button">生成</button>
-                            </div>
+        <div class="container">
+            <div class="row">
+                <div class="footer-wrapper">
+                    <div class="footer-right">
+                        <div class="social-and-address">
+                            <p class="address">
+                                <strong>{$web_name}</strong><br>
+                                <a href="https://wpa.qq.com/msgrd?v=3&uin=609451870&site=qqq&menu=yes">oreo(饼干)原创开发</a><br>
+                            </p><!-- .address -->
+                            <a class="wh-logo-link" href="http://beian.miit.gov.cn/" rel="home"><span class="screen-reader-text"></span>ICP备:{$icp_num}</a>
                         </div>
-                    </form>
-                </div>
-                <!--Domain Search Wrapper End-->
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Footer Start -->
-<footer class="footer-area">
-    <div class="footer-wave"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="footer-newsletter text-center">
-                    <h3>{$web_name}</h3>
-                </div>
-            </div>
-        </div>
-        <div class="row copyright-are">
-            <div class="col-12">
-                <div class="copyright-text text-center">
-                    <p>2021 © 基于 <a href="https://github.com/emran519/oreoFrame/" target="_blank">饼干(Oreo)</a>微框架</p>
-                    <p>工信部备案号: <a href="http://beian.miit.gov.cn/" target="_blank">{$icp_num}</a></p>
-                    <ul class="footer-social-links d-flex justify-content-center">
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-</footer>
-<!-- Footer End -->
-<!--Go To Top Arrow area start-->
-<div class="top-arrow">
-    <a href="#" id="scroll" style="display: none;"><i class="fas fa-angle-up"></i></a>
-</div>
-<!--Go To Top Arrow area End-->
-
-<!--=======================================
-    All Jquery Script link
-===========================================-->
-
-<!-- Bootstrap core JavaScript -->
-
-<script src="__HOME__/static/index/vendor/js/jquery.min.js"></script>
-<script src="__HOME__/static/index/vendor/js/bootstrap.min.js"></script>
-<script src="__HOME__/static/index/vendor/js/owl.carousel.min.js"></script>
-<script src="__HOME__/static/index/vendor/js/typed.min.js"></script>
-<script src="__HOME__/static/index/vendor/js/wow.min.js"></script>
-<script src="__HOME__/static/index/vendor/js/jquery.counterup.min.js"></script>
-<script src="__HOME__/static/index/vendor/js/venobox.min.js"></script>
-<script src="__HOME__/static/index/vendor/js/custom-select.js"></script>
-<script src="__HOME__/static/index/vendor/js/jquery.meanmenu.min.js"></script>
-<script src="__HOME__/static/index/vendor/js/custom.js"></script>
-<script src="__HOME__/static/index/vendor/js/sweetalert.min.js"></script>
+                    </div><!-- .footer-right -->
+                </div><!-- .footer-wrapper -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </footer><!-- #colophon -->
+    <div class="sticky_sentinel sticky_sentinel--top"></div></div><!-- #page -->
+<script type="text/javascript" defer="defer" src="__HOME__/static/index/js/vendors.js" id="vendors_js_defer-js"></script>
+<script type="text/javascript" defer="defer" src="__HOME__/static/index/js/master.js" id="theme_js_defer-js"></script>
+<script src="__HOME__/static/layuiadmin/jquery.min.js"></script>
+<script src="__HOME__/static/index/js/sweetalert.min.js"></script>
 <script>
     window.onload = SearchVehicleTag();//加载页面时自动执行方法
     function SearchVehicleTag(){
         $.ajax({
-            url:'{fun:ctr("domainList")}',
+            url:'index/index/domainList',
             type: "post",
             dataType: "json",
             contentType: "application/json",
@@ -167,30 +218,20 @@
                 }else{
                     $("#domain_id").append("<option value=''>暂无域名配置</option>");
                 }
-            },
-            error: function (msg) {
-                alert("数据加载出错，请重试！");
             }
         });
     }
-    var typed = new Typed('#typed', {
-        stringsElement: '#typed-strings',
-        typeSpeed: 100,
-        backSpeed: 100,
-        loop: true,
-        smartBackspace: true,
-    });
     //
     function shortDomain(){
         $.ajax({
             type: "POST",
-            url:'{fun:ctr("shortDomain")}',
+            url:'index/index/shortDomain',
             data: $('#oreoDataAddForm').serialize(),
             dataType: 'json',
             success : function(res) {
                 if(res.code == 200){
                     $('#token').val(res.data.token);
-                   return  swal("生成成功!", res.data.domain, "success");
+                    return  swal("生成成功!", res.data.domain, "success");
                 } else {
                     $('#token').val(res.data.token);
                     return swal("发生错误!", res.msg, "error");
@@ -198,6 +239,6 @@
             }
         });
     }
+
 </script>
-</body>
-</html>
+</body></html>

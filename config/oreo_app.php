@@ -2,7 +2,7 @@
 
 return[
     // 是否开启错误提示
-    'debug'=>false,
+    'debug'=>true,
     // URL伪静态后缀
     'url_html_suffix'=>".html",
     //输出格式 html,json,xml
@@ -19,9 +19,15 @@ return[
     'admin_salt' => '6291b6%4b2f#82b1&c3',
     //路由
     'route'=>[
-       'existent'=> true, //是否开启空路由转发
-       'default_class' => 'Index',//默认控制器
-       'default_fun' => 'longUrl',//默认方法
+        'default_app'=> 'index', //默认应用
+        'default_class' => 'Index',//默认控制器
+        'default_fun' => '',//默认方法(默认为index)
+        'null_route' => [
+            'type' => true,
+            'app' => 'index',
+            'controller' => 'Index',
+            'action' => 'longUrl'
+        ]//路由不存在则转发到
     ],
     //Session配置
     'session'=>[

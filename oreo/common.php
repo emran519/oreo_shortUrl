@@ -115,7 +115,6 @@ function removeDir($dirName){
     return rmdir($dirName) ;
 }
 //自动加载
-spl_autoload_register("autoload");
 function autoload($className){
     if(strpos($className,"\\") !== false){
         $pathArr = explode("\\", $className);
@@ -140,7 +139,7 @@ function autoload($className){
             }
         }
     }else{
-        if(oreo\lib\Config::get("app.route.existent")){
+        if(oreo\lib\Config::get("app.route.null_route.type")){
             return false;
         }
         \oreo\lib\Error::emptyFile($filePath);
@@ -194,9 +193,9 @@ function url($addr="",$param=[]){
 }
 //快速返回模版输出
 function view($tplPath=null,$data=null){
-    \oreo\lib\View::assign($data);
+    if($data)\oreo\lib\View::assign($data);
     return \oreo\lib\View::display($tplPath);
 }
 function ctr($data){
-    return __HOME__ .'/'. oreo\lib\Route::$controller . '/' . $data;
+    return __HOME__ .'/'. oreo\lib\Route::$app. '/' . oreo\lib\Route::$controller . '/' . $data;
 }

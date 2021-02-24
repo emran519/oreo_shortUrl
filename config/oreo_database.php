@@ -7,15 +7,15 @@ return [
     // 数据库驱动,目前支持mysql
 	"type" => "mysql",
     // 数据库账号
-	"user" => "",
+	"user" => "e_dev_2free_cn",
     // 数据库库名
-    "database" => "",
+    "database" => "e_dev_2free_cn",
 	// 数据库密码
-    "password" => "",
+    "password" => "t5fX3ZGrLe5fZxKw",
 	// 数据库编码默认采用utf8
     "charset" => "utf8",
     // 数据库表前缀
 	"prefix" => "oreo_",
     // 是否使用长连接
-    "connect" => false,
+    "connect" => true,
 ];

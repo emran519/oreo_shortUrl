@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$web_name} - 添加 - 权限规则</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="__HOME__/static/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__HOME__/static/layuiadmin/style/admin.css" media="all">
+    <style type="text/css">
+        .downpanel .layui-select-title span {
+            line-height: 38px;
+        }
+
+        /*继承父类颜色*/
+        .downpanel dl dd:hover {
+            background-color: inherit;
+        }
+    </style>
+    <style type="text/css">
+        body {
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+            margin: 0 auto;
+        }
+        td {
+            font-size: 12px !important;
+        }
+
+        .layui-form-checkbox span {
+            height: 30px;
+        }
+        .layui-field-title {
+            border-top: 1px solid white;
+        }
+        table {
+            width: 100% !important;
+        }
+
+    </style
+
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+
+            <div class="layui-card-body" pad15>
+                <form id="systemForm" action="" method="post">
+                    <div class="layui-form" wid100 lay-filter="">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">菜单名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" class="layui-input" placeholder="请输入菜单名称">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="" class="layui-form-label">父级菜单</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="parent_id" lay-filter="parent_id" class="layui-input" name="parent_id">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">是否为菜单</label>
+                            <div class="layui-input-block">
+                                <select name="is_menu"  id="is_menu" lay-filter="thisMenu">
+                                    <option value="0" selected>否</option>
+                                    <option value="1">是</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="is_menuType" style="display: none">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">icon图标</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="icon" class="layui-input" placeholder="请输入layui-icon名称">
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">是否默认展开</label>
+                            <div class="layui-input-block">
+                                <select name="spread"  id="spread" >
+                                    <option value="0">否</option>
+                                    <option value="1">是</option>
+                                </select>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">应用名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="app_name" class="layui-input" placeholder="请输入应用">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">控制器名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="action_name" class="layui-input" placeholder="请输入控制器名称">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">方法名称</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="function_name" class="layui-input" placeholder="请输入方法名称">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">排序</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="sort" class="layui-input" placeholder="排序数值越大越往后">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="add" >确认添加</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="__HOME__/static/layuiadmin/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '__HOME__/static/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index', //主入口模块
+    }).use(['index','element', 'treeSelect', 'layer', 'form'],function() {
+        var $ = layui.$
+            ,form = layui.form
+            ,treeSelect = layui.treeSelect;
+        //-----------------处理结束--------------------//
+        form.on('select(thisMenu)', function(data){
+            var val=data.value;
+            var menuType  = $("#is_menuType");
+            if(val=='0'){
+                $(menuType).hide();
+            }else{
+                $(menuType).show();
+            }
+        });
+        $.ajaxSetup({
+            type: 'POST',
+            dataType : "json",
+            url:  '{fun:ctr("../Auth/addAdminRoleList")}',
+        });
+        treeSelect.render({
+            // 选择器
+            elem: '#parent_id',
+            // 数据
+            data:  '{fun:ctr("../Auth/adminMenuList")}',
+            // 异步加载方式：get/post，默认get
+            type: 'post',
+            // 占位符
+            placeholder: '不选择默认为顶级菜单',
+            // 是否开启搜索功能：true/false，默认false
+            search: true,
+            // 点击回调
+            click: function(d){
+                $('#parent_id').val(d.current.id);
+            },
+            // 加载完成后的回调函数
+            success: function (d) {
+            }
+        });
+        form.on('submit(add)', function(data){
+            //使用ajax发送请求
+            $.ajax({
+                url: '{fun:ctr("../Auth/addAdminMenuData")}',
+                data:data.field,
+                success:function(data){
+                    if(data.code == 200){
+                        layer.msg(data.msg, {icon: 1});
+                        window.setTimeout(function () {
+                            var index = parent.layer.getFrameIndex(window.name);
+                            parent.layer.close(index);
+                        }, 1000);
+                    }else if(data.code == -7){
+                        layer.msg(data.msg, {icon: 2});
+                        window.setTimeout(function () {
+                            top.location = '../Login';
+                        }, 1000);
+                    }else{
+                        layer.msg(data.msg, {icon: 2});
+                    }
+                },
+                error: function(data){
+                    console.log(data);
+                    layer.msg('数据异常，操作失败！');
+                },
+            });
+            return false;  //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+    });
+</script>
+</body>
+</html>
