@@ -28,7 +28,7 @@ class Domain extends Controller
         $list = Db::table('domain')
             ->alias('a')
             ->join('oreo_domain_filter b','a.filter_id = b.id')
-            ->field('a.id,a.domain,a.cycle,a.safe,a.safe_tpl,a.state,a.create_time,b.id,b.filter_name')
+            ->field('a.id,a.domain,a.cycle,a.safe,a.safe_tpl,a.state,a.create_time,b.id as filter_id,b.filter_name')
             ->limit($page,$limit)->all();
         //查询总数
         $count_list = Db::table('domain')->count();  //总数

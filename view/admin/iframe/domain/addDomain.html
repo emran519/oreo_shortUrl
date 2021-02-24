@@ -111,7 +111,7 @@
                     var option = res.data;
                     var filter_select = '';
                     for (var o in option) {
-                        filter_select += '<option value="' + option[o].filter_id + '">' + option[o].filter_name + '</option>';
+                        filter_select += '<option value="' + option[o].id + '">' + option[o].filter_name + '</option>';
                     }
                     $('#filter_id').html(filter_select);
                     form.render('select');
