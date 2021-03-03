@@ -227,7 +227,7 @@ class Query {
      */
     public function query($sql)
     {
-        return self::$db->query($sql);
+        return self::$db->query($sql)->fetchAll();
     }
 
     /**

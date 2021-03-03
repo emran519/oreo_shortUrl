@@ -98,7 +98,11 @@ class SmsSingleSender
         $data->time = $curTime;
         $data->extend = $extend;
         $data->ext = $ext;
-
-        return $this->util->sendCurlPost($wholeUrl, $data);
+        $result =  $this->util->sendCurlPost($wholeUrl, $data);
+        $res = json_decode($result,true);
+        if ( $res ['result'] != 0) {
+            return false;
+        }
+        return true;
     }
 }

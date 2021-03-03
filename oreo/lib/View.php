@@ -80,12 +80,11 @@ class View {
                 '/{continue}/',
                 '/{if (.*?)}/',
                 '/{\/if}/',
-                '/{elseif (.*?)}/',
+                '/{elif (.*?)}/',
                 '/{else}/',
                 '/{foreach (.*?)}/',
                 '/{\/foreach}/',
                 "/{include '(.*?)'}/",
-                '/{\:(.*?)}/',
                 '/{fun:(.*?)}/'
             );
             $replace = array(
@@ -98,8 +97,7 @@ class View {
                 '<?php else:?>',
                 '<?php foreach(${1}):?>',
                 '<?php endforeach;?>',
-                '<?php view()->display("${1}");?>',
-                '<?php echo ${1};?>',
+                '<?php echo view("${1}");?>',
                 '<?php echo ${1};?>'
             );
             $cacheData = preg_replace($pattern, $replace, $fileData);

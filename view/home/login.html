@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>注册帐号</title>
+    <title>{$web_name}-注册帐号</title>
     <link rel="shortcut icon" href="assets/img/favicon.png">
     <link rel="stylesheet" href="__HOME__/static/home/css/bootstrap.min.css">
-    <link rel="stylesheet" href="__HOME__/static/home/css/style.css">
+    <link rel="stylesheet" href="__HOME__/static/home/css/style-no.css">
 </head>
 <body>
 
@@ -25,8 +25,8 @@
 
                         <form id="oreoDataAddForm" action="" method="post">
                             <div class="form-group">
-                                <label class="form-control-label">帐号</label>
-                                <input type="email" class="form-control" name="username">
+                                <label class="form-control-label"><a id="target_name"></a></label>
+                                <input type="email" class="form-control" name="is_target">
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">密码</label>
@@ -44,7 +44,7 @@
                                         </div>
                                     </div>
                                     <div class="col-6 text-right">
-                                        <a class="forgot-link" href="forgot-password.html">忘记密码 ?</a>
+                                        <a class="forgot-link" href="login/resetPassword.html">忘记密码 ?</a>
                                     </div>
                                 </div>
                             </div>
@@ -73,6 +73,12 @@
 <script src="__HOME__/static/layuiadmin/jquery.min.js"></script>
 <script src="__HOME__/static/index/js/sweetalert.min.js"></script>
 <script>
+    let trg_name = {$system_sms};
+    if(trg_name == 1){
+        $("#target_name").html('邮箱');
+    }else{
+        $("#target_name").html('手机号码');
+    }
     function shortDomain(){
         $.ajax({
             type: "POST",

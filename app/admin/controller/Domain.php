@@ -49,8 +49,9 @@ class Domain extends Controller
         $tpl = request()->post('safe_tpl');
         if($safe==1 && empty($tpl))return json(0,'防红守护模式下，请选择防红模板');
         $cycle = request()->post('cycle/d',0);//生命周期
-        $state = request()->post('state');//状态;1=>正常;2=>停止
+        $state = request()->post('state');//状态;1=>正常生成;2=>登录后生成;3=>停止服务
         $filter = request()->post('filter_id');//过滤组ID
+        if(!$state) return json(0,'请选择状态');
         if(!$filter)return json(0,'请选择过滤组，如您未添加过滤组，请先添加后再操作');
         //查询
         $res = Db::table('domain')->where("domain=:domain")->bind(':domain',$domain)->find();
@@ -76,9 +77,10 @@ class Domain extends Controller
         if(!$domain) return json(0,'域名不能为空');
         if (preg_match('/[\x{4e00}-\x{9fa5}]/u', $domain) > 0) return json(0,'域名不能包含中文字符');
         $cycle = request()->post('cycle/d',0);//生命周期
-        $state = request()->post('state');//状态;1=>正常;2=>停止
+        $state = request()->post('state');//状态;1=>正常生成;2=>登录后生成;3=>停止服务
         $safe = request()->post('safe');//防红;1=>开;2=>关闭
         $tpl = request()->post('safe_tpl');
+        if(!$state) return json(0,'请选择状态');
         $filter = request()->post('filter_id');//过滤组ID
         if(!$filter)return json(0,'请选择过滤组，如您未添加过滤组，请先添加后再操作');
         if($safe==1 && empty($tpl))return json(0,'防红守护模式下，请选择防红模板');
@@ -104,7 +106,7 @@ class Domain extends Controller
         Db::begin();
         try {
             Db::table('domain')->where('id=:id')->bind(':id', $id)->delete();
-            Db::table('domain_text')->where('domain_id=:domain_id')->bind(':domain_id', $id)->delete();
+            Db::table('short_url')->where('domain_id=:domain_id')->bind(':domain_id', $id)->delete();
             Db::commit();
             return json(200,'删除成功');
         }catch (\Exception $e){
@@ -123,14 +125,14 @@ class Domain extends Controller
         $limit = request()->get('limit/d',1);//如果有范围就默认范围否则为范围为1
         $page = intval( (request()->get('page/d',1) - 1) * $limit);
         //分页查询
-        $list = Db::table('domain_text')
+        $list = Db::table('short_url')
             ->alias('a')
             ->join('oreo_domain b','a.domain_id = b.id')
             ->field('b.id as domain_id,b.domain,a.domain_id,a.id,a.address,a.cycle,a.record,a.create_time,a.end_time,b.safe')
             ->limit($page,$limit)
             ->all();
         //查询总数
-        $count_list = Db::table('domain_text')->count();  //总数
+        $count_list = Db::table('short_url')->count();  //总数
         if(empty($list)){ //如果没有数据
             return json(0,'暂无数据');
         }
@@ -153,7 +155,7 @@ class Domain extends Controller
                 'cycle' => $cycle,//生命周期
             ];
         }
-        Db::table('domain_text')->where('id',$id)->update($param);
+        Db::table('short_url')->where('id',$id)->update($param);
         return json(200,'续签成功');
     }
 
@@ -161,14 +163,14 @@ class Domain extends Controller
     public function delShortDomain(){
         $id = request()->post('id'); //id
         if(!$id) return json(0,'Id不能为空');
-        Db::table('domain_text')->where('id=:id')->bind(':id', $id)->delete();
+        Db::table('short_url')->where('id=:id')->bind(':id', $id)->delete();
         return json(200,'删除成功');
     }
 
     //域名配置-短网址列表-删除全部失效链接
     public function delAllShortDomain(){
         $now = time();
-        $res = Db::table('domain_text')->alias('a')
+        $res = Db::table('short_url')->alias('a')
             ->join('oreo_domain b','a.domain_id = b.id')
             ->where("b.cycle<>:cycle and a.end_time<:end_time")
             ->bind([':cycle'=>0,':end_time'=>$now])
@@ -180,7 +182,7 @@ class Domain extends Controller
             $ids[$i] = $res[$i]['id'];
         }
         $str = implode(',', $ids);
-        Db::table('domain_text')->where("id in ($str)")->delete();
+        Db::table('short_url')->where("id in ($str)")->delete();
         return json(200,'删除成功');
     }
 

@@ -12,10 +12,11 @@ function json(int $code,$msg = null, $data = null){
         $arr['msg']  = $msg ? : '成功';
         $arr['data'] = $data;
     }else{
-        $arr['code'] = -1;
+        $arr['code'] = $code;
         $arr['msg']  = $msg ? : '失败';
         $arr['data'] = $data;
     }
+    header("Content-type: application/json; charset=utf-8;");
     return json_encode($arr,JSON_UNESCAPED_UNICODE);
 }
 //获取配置

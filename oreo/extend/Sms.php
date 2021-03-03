@@ -48,13 +48,13 @@ class Sms
      * @param  int    $tempId      模板 id
      * @param  string $param       模板参数列表，如模板 {1}...{2}...{3}，那么需要带三个参数
      * @param  string $sign        签名，如果填空串，系统会使用默认签名
-     * @return array|string        应答json字符串，详细内容参见腾讯云协议文档
+     * @return bool                应答json字符串，详细内容参见腾讯云协议文档
      */
-    public function qCloudSmsParam(int $nationCode, string $phoneNumber, int $tempId, string $param, string $sign = "") : array
+    public function qCloudSmsParam(int $nationCode, string $phoneNumber, int $tempId, string $param, string $sign = "") : bool
     {
         $res = self::$result->sendWithParam($nationCode, $phoneNumber, (array)["$param"], $tempId, $sign, "", "");
         self::$result = null;
-        return json_decode($res,true);
+        return $res;
     }
 
     /**
@@ -128,12 +128,17 @@ class Sms
      * @param string $text  邮件内容
      * @return string
      */
-    public function emailParam(string $email, string  $title, string $text) : string
+    public function emailParam(string $email, string  $title, string $text) : bool
     {
         $res = self::$result->send($email, self::$mail['email_name'], $title, $text, self::$mail['alias']);
         self::$result = null;
         self::$mail   = null;
-        return json_decode($res,true);
+        $result = json_decode($res,true);
+        if($result === 1) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

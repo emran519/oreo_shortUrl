@@ -27,7 +27,7 @@ class Controller{
 				echo json_encode(["code"=>"-7","msg"=>"授权失败"]);die();
 			}else{
                 echo('{"code":-2,"msg":"Session验证失败"}');
-                header("location:".url("./admin/Login"));
+                header("location:".url("./admin/Login"));die();
 			}
 		}
         $is_app = Route::$app; //控制器名称

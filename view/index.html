@@ -79,6 +79,9 @@
                             <img  src="__HOME__/static/index/img/logo.png">
                         </a>
                     </div>
+                    <div style="display:flex;align-items:center;">
+                        {if ($user)} <a href="home/Index.html">用户中心</a> {else} <a href="home/Login.html">登录</a> {/if}
+                    </div>
                     <!--<form data-searchform="" role="search" method="get" class="search-form" action="https://www.2free.cn/">
                 <label for="search-field-id-6033678f5c80b"><span class="screen-reader-text">To search this site, enter a search term</span></label>
                 <button class="search-close-icon" aria-label="Close" aria-hidden="true">
@@ -203,8 +206,6 @@
             url:'index/index/domainList',
             type: "post",
             dataType: "json",
-            contentType: "application/json",
-            traditional: true,
             success: function (res) {
                 if(res.code==200){
                     for (var i = 0; i < res.data.domain.length; i++) {
@@ -225,13 +226,22 @@
             url:'index/index/shortDomain',
             data: $('#oreoDataAddForm').serialize(),
             dataType: 'json',
+            cache:false,
             success : function(res) {
                 if(res.code == 200){
+                    swal("生成成功!", res.data.domain, "success");
                     $('#token').val(res.data.token);
-                    return  swal("生成成功!", res.data.domain, "success");
+                }else if(res.code == 8){
+                    swal(res.msg, {
+                        icon: "warning",
+                    }).then(function () {
+                        window.setTimeout(function () {
+                            top.location = '{fun:ctr("../../home/Login.html")}';
+                        }, 1000);
+                    });
                 } else {
+                    swal("发生错误!", res.msg, "error");
                     $('#token').val(res.data.token);
-                    return swal("发生错误!", res.msg, "error");
                 }
             }
         });

@@ -12,9 +12,9 @@ return[
     // 强制pathInfo
     'path_info_only'=>false,
     //安全监测(如果触犯安全规则IP会被暂时拉黑，此功能需开启redis)
-    'safety' => false,
+    'safety' => true,
     //恶意操作触碰频率
-    'safety_frequency' => 10,
+    'safety_frequency' => 3,
     //密码盐
     'admin_salt' => '6291b6%4b2f#82b1&c3',
     //路由

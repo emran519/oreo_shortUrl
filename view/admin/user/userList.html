@@ -72,9 +72,9 @@
             cols: [
                 [
                     {field: 'id', title: '用户ID',  sort: true},
-                    {field: 'username', title: '用户名'},
                     {field: 'email', title: '邮箱' },
                     {field: 'phone', title: '手机号码' },
+                    {field: 'qq_num', title: '联系QQ' },
                     {field: 'login_time',  title: '最近登录时间' },
                     {field: 'create_time',  title: '注册时间'},
                     {field: 'state', title: '状态', sort: true, templet: function(d){
@@ -113,7 +113,7 @@
                     shadeClose: true,
                     shade: 0.8,
                     area: ['65%', '75%'],
-                    content: '{fun:ctr("../Iframe/addAdminPage")}',
+                    content: '{fun:ctr("../Iframe/addUserPage")}',
                 });
             },end:function(){
                 location.reload();
@@ -134,35 +134,27 @@
                     shadeClose: true,
                     shade: 0.8,
                     area: ['75%', '75%'],
-                    content: '{fun:ctr("../Iframe/editAdminPage")}',
+                    content: '{fun:ctr("../Iframe/editUserPage")}',
                     success:function(layero,index){
                         var id = $("#id", layero.find("iframe")[0].contentWindow.document);
-                        var role_id = $("#role_id", layero.find("iframe")[0].contentWindow.document);
-                        var username = $("#username", layero.find("iframe")[0].contentWindow.document);
-                        var real_name = $("#real_name", layero.find("iframe")[0].contentWindow.document);
-                        var user_phone = $("#user_phone", layero.find("iframe")[0].contentWindow.document);
-                        var user_email = $("#user_email", layero.find("iframe")[0].contentWindow.document);
-                        var role_name = $("#role_name", layero.find("iframe")[0].contentWindow.document);
-                        var gender = $("#gender", layero.find("iframe")[0].contentWindow.document);
+                        var email = $("#email", layero.find("iframe")[0].contentWindow.document);
+                        var phone = $("#phone", layero.find("iframe")[0].contentWindow.document);
+                        var qq_num = $("#qq_num", layero.find("iframe")[0].contentWindow.document);
                         var state = $("#state", layero.find("iframe")[0].contentWindow.document);
                         id.attr("value", data.id );
-                        role_id.attr("value", data.role_id );
-                        role_name.attr("value", data.role_name );
-                        username.attr("value", data.username );
-                        real_name.attr("value", data.real_name );
-                        user_phone.attr("value", data.user_phone );
-                        user_email.attr("value", data.user_email );
-                        gender.find("option[value='"+data.gender+"']").attr("selected",true);
+                        email.attr("value", data.email );
+                        phone.attr("value", data.phone );
+                        qq_num.attr("value", data.qq_num );
                         state.find("option[value='"+data.state+"']").attr("selected",true);
                     },end:function(){
                         location.reload();
                     }
                 });
             }else if(obj.event === "del"){
-                layer.confirm('确定删除账号: ' +data.username +' ?', function(index){
+                layer.confirm('这将会删除此用户所有生成的短网址以及记录！', function(index){
                     $.ajax({
-                        url: '{fun:ctr("delAdminData")}',
-                        data:{id:data.id,role_id:data.role_id},
+                        url: '{fun:ctr("delUserData")}',
+                        data:{id:data.id},
                         success:function(data){
                             if(data.code == 200 ){
                                 layer.msg(data.msg, {icon: 1});

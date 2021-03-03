@@ -38,6 +38,16 @@
                                 </div>
                             </div>
                             <div class="layui-form-item">
+                                <label class="layui-form-label">{$system_sms['info']}</label>
+                                <div class="layui-input-block">
+                                    <select name="system_sms"  id="system_sms" >
+                                        <option value="1" >邮件验证码</option>
+                                        <option value="2" >阿里云短信</option>
+                                        <option value="3" >腾讯云短信</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
                                 <label class="layui-form-label">{$system_state['info']}</label>
                                 <div class="layui-input-block">
                                     <select name="system_state"  id="system_state" >
@@ -75,6 +85,7 @@
         var $ = layui.$
             ,form = layui.form;
         $("#system_state").find("option[value='"+ {$system_state['value']}+"']").attr("selected",true);
+        $("#system_sms").find("option[value='"+ {$system_sms['value']}+"']").attr("selected",true);
         layui.form.render();
         form.on('submit(set_website)', function(data){
             //获取请求数据

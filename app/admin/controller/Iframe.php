@@ -70,6 +70,16 @@ class Iframe extends Controller
         return View::display('admin/iframe/domain/editUrlFilter');
     }
 
+    //用户管理-添加
+    public function addUserPage(){
+        return View::display('admin/iframe/user/addUser');
+    }
+
+    //用户管理-编辑
+    public function editUserPage(){
+        return View::display('admin/iframe/user/editUser');
+    }
+
     function __destruct(){}
 
 }

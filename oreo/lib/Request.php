@@ -229,6 +229,25 @@ class Request
     }
 
     /**
+     * 检测是否使用手机访问
+     * @access public
+     * @return bool
+     */
+    public function isMobile()
+    {
+        if ($this->server('HTTP_VIA') && stristr($this->server('HTTP_VIA'), "wap")) {
+            return true;
+        } elseif ($this->server('HTTP_ACCEPT') && strpos(strtoupper($this->server('HTTP_ACCEPT')), "VND.WAP.WML")) {
+            return true;
+        } elseif ($this->server('HTTP_X_WAP_PROFILE') || $this->server('HTTP_PROFILE')) {
+            return true;
+        } elseif ($this->server('HTTP_USER_AGENT') && preg_match('/(blackberry|configuration\/cldc|hp |hp-|htc |htc_|htc-|iemobile|kindle|midp|mmp|motorola|mobile|nokia|opera mini|opera |Googlebot-Mobile|YahooSeeker\/M1A1-R2D2|android|iphone|ipod|mobi|palm|palmos|pocket|portalmmm|ppc;|smartphone|sonyericsson|sqh|spv|symbian|treo|up.browser|up.link|vodafone|windows ce|xda |xda_)/i', $this->server('HTTP_USER_AGENT'))) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * 当前的请求类型
      * @access public
      * @param  bool $origin 是否获取原始请求类型

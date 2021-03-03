@@ -91,9 +91,11 @@
                         }},
                     {field: 'state', title: '状态', sort: true, templet: function(d){
                             if(d.state==1){
-                                return  '<a style="color: #00FF00">正常</a>';
+                                return  '<a style="color: #00FF00">正常生成</a>';
+                            }else if(d.state==2){
+                                return  '<a style="color: #0045f5">登录后生成</a>';
                             }else{
-                                return  '<a style="color: #ff0000">停止</a>';
+                                return  '<a style="color: #ff0000">停止生成</a>';
                             }
                         }},
                     {field: 'create_time',  title: '添加时间'},
