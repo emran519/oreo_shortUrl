@@ -1,0 +1,320 @@
+{include 'home/common/head'}
+<link href="__HOME__/static/home/css/morris.css" rel="stylesheet">
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">数据统计</h3>
+        </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">用户中心</a></li>
+                <li class="breadcrumb-item active">数据统计</li>
+            </ol>
+        </div>
+        <div class="">
+            <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <!-- column -->
+            <!-- column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">近七日点击量</h4>
+                        <div id="morris-line-chart"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- column -->
+            <!-- column -->
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">系统语言统计</h4>
+                       <!-- <ul class="list-inline text-right">
+                            <li>
+                                <h5><i class="fa fa-circle m-r-5 text-danger"></i>简体中文</h5>
+                            </li>
+                            <li>
+                                <h5><i class="fa fa-circle m-r-5 text-info"></i>繁体中文</h5>
+                            </li>
+                            <li>
+                                <h5><i class="fa fa-circle m-r-5 text-inverse"></i>English</h5>
+                            </li>
+                        </ul>-->
+                        <div id="morris-lang-chart"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- column -->
+            <!-- column -->
+            <div class="col-lg-5 col-xlg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">浏览器统计</h4>
+                        <table class="table browser m-t-30 no-border">
+                            <tbody>
+                            <tr>
+                                <td><img src="__HOME__/static/home/img/browser/internet-logo.png" alt="logo"></td>
+                                <td>Internet Explorer</td>
+                                <td class="text-right"><span class="label label-light-warning"><a id="ie"></a>/次</span></td>
+                            </tr>
+                            <tr>
+                                <td><img src="__HOME__/static/home/img/browser/edg.png" alt="logo"></td>
+                                <td>Internet Explorer</td>
+                                <td class="text-right"><span class="label label-light-warning"><a id="edg"></a>/次</span></td>
+                            </tr>
+                            <tr>
+                                <td style="width:40px"><img src="__HOME__/static/home/img/browser/chrome-logo.png" alt="logo"></td>
+                                <td>Google Chrome</td>
+                                <td class="text-right"><span class="label label-light-info"><a id="chrome"></a>/次</span></td>
+                            </tr>
+                            <tr>
+                                <td><img src="__HOME__/static/home/img/browser/firefox-logo.png" alt="logo"></td>
+                                <td>Mozila Firefox</td>
+                                <td class="text-right"><span class="label label-light-success"><a id="firefox"></a>/次</span></td>
+                            </tr>
+                            <tr>
+                                <td><img src="__HOME__/static/home/img/browser/safari-logo.png" alt="logo"></td>
+                                <td>Apple Safari</td>
+                                <td class="text-right"><span class="label label-light-primary"><a id="safari"></a>/次</span></td>
+                            </tr>
+                            <tr>
+                                <td><img src="__HOME__/static/home/img/browser/opera-logo.png" alt="logo"></td>
+                                <td>Opera mini</td>
+                                <td class="text-right"><span class="label label-light-danger"><a id="opera"></a>/次</span></td>
+                            </tr>
+                            <tr>
+                                <td><img src="__HOME__/static/home/img/browser/other.png" alt="logo"></td>
+                                <td>其他浏览器</td>
+                                <td class="text-right"><span class="label label-light-megna"><a id="other"></a>/次</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- column -->
+            <!-- column -->
+            <div class="col-lg-7 col-xlg-8">
+                <div class="card" style="height: 553px;">
+                    <div class="card-body">
+                        <h4 class="card-title">操作系统统计</h4>
+                        <br><br>
+                        <div id="morris-browse-chart"></div>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+            <!-- column -->
+        </div>
+        <!-- Right sidebar -->
+        <!-- ============================================================== -->
+        <!-- .right-sidebar -->
+        <div class="right-sidebar">
+            <div class="slimscrollright">
+                <div class="rpanel-title"> 状态栏颜色 <span><i class="ti-close right-side-toggle"></i></span> </div>
+                <div class="r-panel-body">
+                    <ul id="themecolors" class="m-t-20">
+                        <li><b>带浅色侧边栏</b></li>
+                        <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
+                        <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
+                        <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
+                        <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme working">4</a></li>
+                        <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
+                        <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
+                        <li class="d-block m-t-30"><b>带深色侧边栏</b></li>
+                        <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
+                        <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
+                        <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
+                        <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
+                        <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
+                        <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer">
+        © 2021 Oreo(饼干) 2free.cn 原创开发
+    </footer>
+    <!-- ============================================================== -->
+    <!-- End footer -->
+    <!-- ============================================================== -->
+</div>
+</div>
+{include 'home/common/foot'}
+<script src="__HOME__/static/home/js/raphael-min.js"></script>
+<script src="__HOME__/static/home/js/morris.js"></script>
+
+<script>
+    let short_id = getUrlQueryString('id');
+    function getUrlQueryString(names, urls) {
+        urls = urls || window.location.href;
+        urls && urls.indexOf("?") > -1 ? urls = urls
+            .substring(urls.indexOf("?") + 1) : "";
+        var reg = new RegExp("(^|&)" + names + "=([^&]*)(&|$)", "i");
+        var r = urls ? urls.match(reg) : window.location.search.substr(1)
+            .match(reg);
+        if (r != null && r[2] != "")
+            return unescape(r[2]);
+        return null;
+    }
+    let windows = 0;
+    let linux = 0;
+    let unix = 0;
+    let mac = 0;
+    let android = 0;
+    let iphone = 0;
+    //语言
+    let simChn = 0;
+    let traChn = 0;
+    let eng = 0;
+    //
+    let day1 = 0; let count1 = 0;
+    let day2 = 0; let count2 = 0;
+    let day3 = 0; let count3 = 0;
+    let day4 = 0; let count4 = 0;
+    let day5 = 0; let count5 = 0;
+    let day6 = 0; let count6 = 0;
+    let day7 = 0; let count7 = 0;
+    window.onload = click7Data();
+    window.onload = langData();
+    function click7Data(){
+        $.ajax({
+            url:'{fun:ctr("click7Data")}',
+            data:{id:short_id},
+            type: "post",
+            dataType: "json",
+            cache:false,
+            async:false,
+            success: function (res) {
+                //操作系统
+                day1 = res.data[0].click_date;
+                count1 = res.data[0].count;
+                day2 = res.data[1].click_date;
+                count2 = res.data[1].count;
+                day3 = res.data[2].click_date;
+                count3 = res.data[2].count;
+                day4 = res.data[3].click_date;
+                count4 = res.data[3].count;
+                day5 = res.data[4].click_date;
+                count5 = res.data[4].count;
+                day6 = res.data[5].click_date;
+                count6 = res.data[5].count;
+                day7 = res.data[6].click_date;
+                count7 = res.data[6].count;
+            },error : function (){
+                alert(0)
+            }
+        });
+    }
+    function langData(){
+        $.ajax({
+            url:'{fun:ctr("langData")}',
+            data:{id:short_id},
+            type: "post",
+            dataType: "json",
+            cache:false,
+            async:false,
+            success: function (res) {
+                //操作系统
+                windows = res.data.windows;
+                linux = res.data.linux;
+                unix = res.data.unix;
+                mac = res.data.mac;
+                android = res.data.android;
+                iphone = res.data.iphone;
+                //浏览器
+                $('#ie').html(res.data.ie);
+                $('#edg').html(res.data.edg);
+                $('#chrome').html(res.data.chrome);
+                $('#firefox').html(res.data.firefox);
+                $('#safari').html(res.data.safari);
+                $('#opera').html(res.data.opera);
+                $('#other').html(res.data.other);
+                //语言
+                simChn = res.data.simChn;
+                traChn = res.data.traChn;
+                eng = res.data.eng;
+            }
+        });
+    }
+    //近七日数据
+    var line = new Morris.Line({
+        element: 'morris-line-chart',
+        resize: true,
+        data: [
+            {y: day1, item1: count1},
+            {y: day2, item1: count2},
+            {y: day3, item1: count3},
+            {y: day4, item1: count4},
+            {y: day5, item1: count5},
+            {y: day6, item1: count6},
+            {y: day7, item1: count7}
+        ],
+        xkey: 'y',
+        ykeys: ['item1'],
+        labels: ['总数'],
+        gridLineColor: '#eef0f2',
+        lineColors: ['#009efb'],
+        lineWidth: 1,
+        hideHover: 'auto'
+    });
+    //浏览器统计
+    Morris.Bar({
+        element: 'morris-browse-chart',
+        data: [
+            {y: 'win/平板', a: windows},
+            {y: 'linux', a: linux},
+            {y: 'unix', a: unix},
+            {y: 'mac', a: mac},
+            {y: 'android', a: android},
+            {y: 'iphone', a: iphone}
+        ],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['总数'],
+        barColors:['#55ce63'],
+        barRatio: 0.4,
+        xLabelAngle: 35,
+        hideHover: 'auto',
+        gridLineColor: '#eef0f2',
+        resize: true
+    });
+    //语言统计
+    Morris.Donut({
+        element: 'morris-lang-chart',
+        data: [
+            {label: "简体中文", value: simChn},
+            {label: "繁体中文", value: traChn},
+            {label: "English", value: eng}
+            ],
+        resize: true,
+        colors:['#ef5350', '#1976d2', '#2f3d4a'],
+    });
+    //浏览器
+
+</script>
+</body>
+</html>

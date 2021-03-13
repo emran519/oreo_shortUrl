@@ -1,0 +1,303 @@
+{include 'home/common/head'}
+    <div class="page-wrapper">
+
+        <div class="row page-titles">
+            <div class="col-md-5 align-self-center">
+                <h3 class="text-themecolor">基本</h3>
+            </div>
+            <div class="col-md-7 align-self-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">数据中心</a></li>
+                    <li class="breadcrumb-item active">基本</li>
+                </ol>
+            </div>
+            <div>
+                <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+                    <!-- card -->
+                    <div class="card card-inverse card-info">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="m-r-20 align-self-center">
+                                    <h1 class="text-white"><i class="icon-link"></i></h1></div>
+                                <div>
+                                    <h3 class="card-title">共生成链接</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 align-self-center">
+                                    <h2 class="font-light text-white"><a id="count"></a>/条</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- card -->
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="card card-inverse card-success">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="m-r-20 align-self-center">
+                                    <h1 class="text-white"><i class="icon-share-alt"></i></h1></div>
+                                <div>
+                                    <h3 class="card-title">链接点击次数</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 align-self-center">
+                                    <h2 class="font-light text-white"><a id="allClick"></a>/次</h2> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <!-- card -->
+                    <div class="card card-inverse card-danger">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <div class="m-r-20 align-self-center">
+                                    <h1 class="text-white"><i class="icon-ban"></i></h1></div>
+                                <div>
+                                    <h3 class="card-title">共失效链接</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 align-self-center">
+                                    <h2 class="font-light text-white"><a id="timeOut"></a>/条</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- card -->
+                </div>
+            </div>
+            <!-- Table -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">链接列表</h4>
+                            <div class="table-responsive m-t-40">
+                                <table id="myTable" class="table table-bordered table-striped text-nowrap" >
+                                    <thead class="thead-default">
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- .right-sidebar -->
+            <div class="right-sidebar">
+                <div class="slimscrollright">
+                    <div class="rpanel-title"> 状态栏颜色 <span><i class="ti-close right-side-toggle"></i></span> </div>
+                    <div class="r-panel-body">
+                        <ul id="themecolors" class="m-t-20">
+                            <li><b>带浅色侧边栏</b></li>
+                            <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
+                            <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
+                            <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
+                            <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme working">4</a></li>
+                            <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
+                            <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
+                            <li class="d-block m-t-30"><b>带深色侧边栏</b></li>
+                            <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
+                            <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
+                            <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
+                            <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
+                            <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
+                            <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Right sidebar -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <footer class="footer">
+            © 2021 Oreo(饼干) 2free.cn 原创开发
+        </footer>
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page wrapper  -->
+    <!-- ============================================================== -->
+</div>
+{include 'home/common/foot'}
+<script src="__HOME__/static/index/js/sweetalert.min.js"></script>
+<script>
+    function dataTime(urlTime){
+        return new Date(parseInt(urlTime) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+    }
+    function timeOut(end_time){
+        let timestamp = Date.parse(new Date());//现在时间(时间戳)
+        let now_time = timestamp /1000;//现在时间(时间戳)
+        if(end_time < now_time){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    window.onload = SearchMyBasic();//加载页面时自动执行方法
+    function SearchMyBasic(){
+        $.ajax({
+            url:'{fun:ctr("myBasic")}',
+            type: "post",
+            dataType: "json",
+            contentType: "application/json",
+            traditional: true,
+            success: function (res) {
+                if(res.code==200){
+                    $('#count').html(res.data.count);
+                    $('#allClick').html(res.data.allClick);
+                    $('#timeOut').html(res.data.timeOut);
+                }else{
+                    $('#count').html('加载失败');
+                    $('#allClick').html('加载失败');
+                    $('#timeOut').html('加载失败');
+                }
+            }
+        });
+    }
+
+    $('#myTable').DataTable({
+        language: {
+            "url": "__HOME__/static/home/js/datatables_language.json"
+        },
+        "processing": true,
+        "searching": true,// 是否允许检索
+        "serverSide": true,// 服务器端处理方式
+        "ordering": false,//排序
+        "lengthMenu": [10, 25, 50, 75, 100],
+        "ajax": {
+            "url": '{fun:ctr("allShortUrl")}',
+            "type": 'GET',
+            "dataType" : 'JSON',
+        },
+        "columns":[ //定义列数据来源
+            {'title':"地址",'class':"text-center"},
+            {'title':"点击频率",'class':"text-center"},
+            {'title':"创建/到期时间",'class':"text-center"},
+            {'title':"备注",'data':null,'class':"text-center"},
+            {'title':"设置",'data':null,'class':"text-center"} // 自定义列
+        ],
+        "columnDefs": [ //自定义列
+            {"targets": 0, "render": function(data, type, row) {
+                    return row.domain + '/' + row.address;
+                }
+            },
+            {"targets": 1, "data": "record", "render": function(data, type, row) {
+                    return row.record + '/次';
+                }
+            },
+            {"targets": 2, "render": function(data, type, row) {
+                    return dataTime(row.create_time) + '<br>' + dataTime(row.end_time);
+                }
+            },
+            {"targets": 3, "render": function(data, type, row) {
+                    let end_time = row.end_time;
+                    if(row.cycle == 0 ){
+                        return  '<a style="color: #00FF00">正常</a>';
+                    }
+                    let time = timeOut(end_time);
+                    if(time){
+                        return  '<a style="color: #00FF00">正常</a>';
+                    } else {
+                        return  '<a style="color: #ff0000">失效</a>';
+                    }
+            }
+            },{"targets": 4,  "render": function(data, type, row) {
+                    let html = "<button onclick='fenxi("+row.id+")' class='btn waves-effect waves-light btn-sm btn-warning'>分析</button>   " + "<button onclick='shortUrlTime("+row.id+")' class='btn waves-effect waves-light btn-sm btn-info'>续期</button>" + "   <button onclick='delData("+row.id+")' class='btn waves-effect waves-light btn-sm btn-danger'>删除</button>";
+                    return html;
+                }
+            },
+        ],
+    });
+
+    function fenxi(id){
+        window.location.href = "ShortData?id="+id;
+    }
+    function delData(id){
+        swal({
+            title: "确定删除?",
+            text: "这将会删除该短网址所有记录!",
+            icon: "warning",
+            dangerMode: true,
+            buttons: {
+                catch: {
+                    text: "确定",
+                    value: "catch",
+                },
+                cancel: "取消",
+            },
+        }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url:'{fun:ctr("delShortUrl")}',
+                        data:{id:id},
+                        type: "post",
+                        dataType: "json",
+                        traditional: true,
+                        success: function (res) {
+                            if(res.code==200){
+                                swal("删除成功", {
+                                    icon: "success",
+                                }).then(function () {
+                                    window.setTimeout(function () {
+                                        window.location.reload();
+                                    }, 1000);
+                                });
+                            }else{
+                                swal("删除失败", {
+                                    icon: "error",
+                                }).then(function () {
+                                    window.setTimeout(function () {
+                                        window.location.reload();
+                                    }, 1000);
+                                });
+                            }
+                        }
+                    })
+                } else {
+                    swal.close();
+                }
+            });
+    }
+    function shortUrlTime(id){
+        $.ajax({
+            url:'{fun:ctr("shortUrlTime")}',
+            data:{id:id},
+            type: "post",
+            dataType: "json",
+            traditional: true,
+            success: function (res) {
+                if(res.code==200){
+                    swal(res.msg, {
+                        icon: "success",
+                    }).then(function () {
+                        window.setTimeout(function () {
+                            window.location.reload();
+                        }, 1000);
+                    });
+                }else{
+                    swal(res.msg, {icon: "error"});
+                }
+            }
+        })
+    }
+
+
+</script>
+</body>
+</html>

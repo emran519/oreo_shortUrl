@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$web_name} - 基本参数</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="__HOME__/static/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__HOME__/static/layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">短信与邮件</div>
+                <div class="layui-card-body">
+                    <div class="layui-tab">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">邮箱设置</li>
+                            <li class="">阿里云短信</li>
+                            <li class="">腾讯云短信</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <!--邮箱设置-->
+                            <div class="layui-tab-item layui-show">
+                                <form id="emailForm" action="" method="post">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">{$smtp_url['info']}</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="smtp_url" value="{$smtp_url['value']}" lay-verify="url" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">{$smtp_port['info']}</label>
+                                    <div class="layui-input-block">
+                                        <select name="smtp_port"  id="smtp_port" >
+                                            <option value="465" >465端口</option>
+                                            <option value="25" >25端口</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">{$mail_name['info']}</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="mail_name" value="{$mail_name['value']}" lay-verify="url" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">{$mail_pass['info']}</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" name="mail_pass" value="{$mail_pass['value']}" lay-verify="url" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item">
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn" id="setEmail" type="button" >确认保存</button>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                            <!--阿里云短信-->
+                            <div class="layui-tab-item">
+                                <form id="aliSmsForm" action="" method="post">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">{$sms_ali_id['info']}</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sms_ali_id" value="{$sms_ali_id['value']}" lay-verify="url" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">{$sms_ali_secret['info']}</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sms_ali_secret" value="{$sms_ali_secret['value']}" lay-verify="url" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">{$sms_ali_sign_name['info']}</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sms_ali_sign_name" value="{$sms_ali_sign_name['value']}" lay-verify="url" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">{$sms_ali_tpl_id['info']}</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sms_ali_tpl_id" value="{$sms_ali_tpl_id['value']}" lay-verify="url" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" id="setAliSms" type="button" >确认保存</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!--腾讯云短信-->
+                            <div class="layui-tab-item">
+                                <form id="tenSmsForm" action="" method="post">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">{$sms_ten_id['info']}</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sms_ten_id" value="{$sms_ten_id['value']}" lay-verify="url" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">{$sms_ten_key['info']}</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sms_ten_key" value="{$sms_ten_key['value']}" lay-verify="url" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">{$sms_ten_tpl_id['info']}</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sms_ten_tpl_id" value="{$sms_ten_tpl_id['value']}" lay-verify="url" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">{$sms_ten_sign['info']}</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="sms_ten_sign" value="{$sms_ten_sign['value']}" lay-verify="url" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn" id="setTenSms" type="button" >确认保存</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="__HOME__/static/layuiadmin/layui/layui.js"></script>
+<script src="__HOME__/static/layuiadmin/jquery.min.js"></script>
+<script>
+    layui.config({
+        base: '__HOME__/static/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use([ 'index','form','element'],function() {
+        var $ = layui.$
+            ,form = layui.form;
+        $("#smtp_port").find("option[value='"+ {$smtp_port['value']}+"']").attr("selected",true);
+        layui.form.render();
+    });
+
+
+    $(function(){
+        //Ajax设置
+        $.ajaxSetup({
+            url: '{fun:ctr("systemSet")}',
+            type: 'POST',
+            dataType : "json",
+            headers: {'X-Requested-With': 'XMLHttpRequest'},
+            cache:false,
+            success:function(data){
+                if(data.code == 200){
+                    layer.msg(data.msg, {icon: 1});
+                    window.setTimeout(function () {
+                        window.location.reload();
+                    }, 500);
+                }else if(data.code == -7){
+                    layer.msg(data.msg, {icon: 2});
+                    window.setTimeout(function () {
+                        top.location = '{fun:ctr("../Login")}';
+                    }, 1000);
+                }else{
+                    layer.msg(data.msg, {icon: 2});
+                }
+            },
+            error: function(data){
+                console.log(data);
+                layer.msg('数据异常，操作失败！');
+            }
+        })
+        $("#setEmail").click(function(){
+            $.ajax({
+                data: $('#emailForm').serialize(),
+            });
+        });
+        $("#setAliSms").click(function(){
+            $.ajax({
+                data: $('#aliSmsForm').serialize(),
+            });
+        });
+        $("#setTenSms").click(function(){
+            $.ajax({
+                data: $('#tenSmsForm').serialize(),
+            });
+        });
+    });
+</script>
+</body>
+</html>

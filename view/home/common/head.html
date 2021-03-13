@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <title>饼干(Oreo)防洪短网址生成系统</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="__HOME__/static/home/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="__HOME__/static/home/css/style.css" rel="stylesheet">
+    <link href="__HOME__/static/home/css/colors/blue.css" id="theme" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+</head>
+<body class="fix-header card-no-border logo-center">
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+</div>
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <header class="topbar">
+        <nav class="navbar top-navbar navbar-expand-md navbar-light">
+            <!-- ============================================================== -->
+            <!-- Logo -->
+            <!-- ============================================================== -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">
+                    <!-- Logo icon --><b>
+                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                    <!-- Dark Logo icon -->
+                    <img src="__HOME__/static/home/img/logo.png" alt="饼干短网址" class="dark-logo" />
+                    <!-- Light Logo icon -->
+                    <img src="__HOME__/static/home/img/logo.png" alt="饼干短网址" class="light-logo" />
+                </b>
+                    <!--End Logo icon -->
+                    <!-- Logo text --><span>
+                         <!-- dark Logo text -->
+                         <img src="__HOME__/static/home/img/logo-text.png" alt="饼干短网址" class="dark-logo" />
+                    <!-- Light Logo text -->
+                         <img src="__HOME__/static/home/img/logo-light-text.png" class="light-logo" alt="饼干短网址" /></span> </a>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Logo -->
+            <!-- ============================================================== -->
+            <div class="navbar-collapse">
+                <ul class="navbar-nav mr-auto mt-md-0">
+                    <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                </ul>
+                <ul class="navbar-nav my-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{if ($user_qq!=0)}//q3.qlogo.cn/headimg_dl?bs=qq&dst_uin={$user_qq}&src_uin={$user_qq}&fid={$user_qq}&spec=100&url_enc=0&referer=bu_interface&term_type=PC{else}__HOME__/static/home/img/user.png{/if}" alt="个人信息" class="profile-pic" /></a>
+                        <div class="dropdown-menu dropdown-menu-right scale-up">
+                            <ul class="dropdown-user">
+                                <li>
+                                    <div class="dw-user-box">
+                                        <div class="u-img"><img src="{if ($user_qq!=0)}//q3.qlogo.cn/headimg_dl?bs=qq&dst_uin={$user_qq}&src_uin={$user_qq}&fid={$user_qq}&spec=100&url_enc=0&referer=bu_interface&term_type=PC{else}__HOME__/static/home/img/user.png{/if}" alt="个人信息"></div>
+                                        <div class="u-text">
+                                            <br>
+                                            <p class="text-muted">{if ($user_email!=0)}{$user_email} {else}{$user_phone}{/if}</p></div>
+                                    </div>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/home/index.html"><i class="ti-user"></i> 数据中心</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/home/myInfo.html"><i class="ti-settings"></i> 个人设置</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/home/login/logOut.html"><i class="fa fa-power-off"></i> 退出登录</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <aside class="left-sidebar">
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+            <!-- Sidebar navigation-->
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">
+                    <li class="nav-small-cap">2free.cn</li>
+                    <li>
+                        <a class="has-arrow waves-effect waves-dark" href="/home/index.html" aria-expanded="false"><i class="mdi mdi-gauge"></i>
+                            <span class="hide-menu">数据中心</span></a>
+                    </li>
+                    <li> <a class="has-arrow waves-effect waves-dark" href="/home/Tool/shortUrl.html" aria-expanded="false"><i class="mdi mdi-bullseye"></i>
+                        <span class="hide-menu">链接生成</span></a>
+                    </li>
+                    <li class="three-column"> <a class="has-arrow waves-effect waves-dark" href="/home/Tool/recoveryUrl.html" aria-expanded="false">
+                        <i class="mdi mdi-chart-bubble"></i><span class="hide-menu">链接恢复</span></a>
+                    </li>
+                    <li class="two-column"> <a class="has-arrow waves-effect waves-dark" href="/home/myInfo.html" aria-expanded="false">
+                        <i class="mdi mdi-book-open-variant"></i><span class="hide-menu">我的</span></a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+    </aside>

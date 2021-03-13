@@ -1,0 +1,279 @@
+{include 'home/common/head'}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">个人中心</h3>
+        </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">基本</a></li>
+                <li class="breadcrumb-item active">我的</li>
+            </ol>
+        </div>
+        <div>
+            <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!-- Row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-outline-info">
+                    <div class="card-header">
+                        <h4 class="m-b-0 text-white">账户信息栏</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="userInfoForm" action="" method="post">
+                            <div class="form-body">
+
+                                <div class="form-group">
+                                    <label for="isEmail">邮箱</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="isEmail" placeholder="邮箱"  value="{$user_info['email']}" disabled>
+                                        <div class="input-group-addon">
+                                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#bind-email"><a id="emailBtn"></a></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="isPhone">手机号码</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="isPhone" placeholder="手机号码" value="{$user_info['phone']}" disabled>
+                                            <div class="input-group-addon">
+                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#isBind-phone" ><a id="phoneBtn"></a></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>联系QQ</label>
+                                            <input type="text" class="form-control" value="{$user_info['qq_num']}" name="qq_num">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>登录密码</label>
+                                            <input type="text" class="form-control" placeholder="填写则表示修改" name="password">
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>最近登录时间</label>
+                                            <input type="text" class="form-control" value="{$user_info['login_time']}" disabled>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-success" id="userInfo"> <i class="fa fa-check"></i> 保存</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Row -->
+
+        <!-- sample modal content -->
+        <div id="bind-email" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><a id="emailMdl"></a></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="emailForm" action="" method="post">
+                            <div class="form-group">
+                                <label for="emailNum" class="control-label">请输入邮箱:</label>
+                                <input type="text" class="form-control" id="emailNum" name="is_target">
+                            </div>
+                            <div class="form-group">
+                                <label for="VerifiCode" class="control-label">数字验证码:</label>
+                                <input type="text" class="form-control" id="VerifiCode" name="local_verify_code" placeholder="请输入后面数字验证码" style="background:url('register/captcha') no-repeat right;background-size:100px 50px;">
+                            </div>
+                            <div class="form-group">
+                                <label for="isEmail">验证码</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="验证码" name="verifyCode">
+                                    <div class="input-group-addon">
+                                        <button type="button" class="btn btn-info" id="smsEmail">获取验证码</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success waves-effect waves-light" id="bindEmailData">保存</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal -->
+        <!-- sample modal content -->
+        <div id="isBind-phone" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><a id="phoneMdl"></a></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="phoneForm" action="" method="post">
+                            <div class="form-group">
+                                <label for="phoneNum" class="control-label">请输入手机号:</label>
+                                <input type="text" class="form-control" id="phoneNum" name="is_target">
+                            </div>
+                            <div class="form-group">
+                                <label for="VerifiCode1" class="control-label">数字验证码:</label>
+                                <input type="text" class="form-control" id="VerifiCode1" name="local_verify_code" placeholder="请输入后面数字验证码" style="background:url('register/captcha') no-repeat right;background-size:100px 50px;">
+                            </div>
+                            <div class="form-group">
+                                <label for="isEmail">验证码</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="验证码" name="verifyCode">
+                                    <div class="input-group-addon">
+                                        <button type="button" class="btn btn-info" id="smsPhone">获取验证码</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success waves-effect waves-light" id="bindPhoneData">保存</button>
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal -->
+
+        <!-- Row -->
+        <div class="right-sidebar">
+            <div class="slimscrollright">
+                <div class="rpanel-title"> 状态栏颜色 <span><i class="ti-close right-side-toggle"></i></span> </div>
+                <div class="r-panel-body">
+                    <ul id="themecolors" class="m-t-20">
+                        <li><b>带浅色侧边栏</b></li>
+                        <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
+                        <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
+                        <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
+                        <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme working">4</a></li>
+                        <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
+                        <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
+                        <li class="d-block m-t-30"><b>带深色侧边栏</b></li>
+                        <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
+                        <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
+                        <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
+                        <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
+                        <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
+                        <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer">
+        © 2021 Oreo(饼干) 2free.cn 原创开发
+    </footer>
+</div>
+</div>
+{include 'home/common/foot'}
+<script src="__HOME__/static/index/js/sweetalert.min.js"></script>
+<script>
+    let phone = {$user_phone};
+    let mail = '{$user_email}';
+    if( mail == 0 ){
+        $('#emailBtn').html('绑定邮箱');
+        $('#emailMdl').html('绑定邮箱');
+    }else{
+        $('#emailBtn').html('修改邮箱');
+        $('#emailMdl').html('修改邮箱');
+    }
+    if( phone == 0 ){
+        $('#phoneBtn').html('绑定手机');
+        $('#phoneMdl').html('绑定手机');
+    }else{
+        $('#phoneMdl').html('绑定手机');
+        $('#phoneBtn').html('修改手机');
+    }
+    $(function(){
+        //Ajax设置
+        $.ajaxSetup({
+            type: "POST",
+            url:'{fun:ctr("bindEmail")}',
+            dataType: 'json',
+            success:function(res){
+                if(res.code == 200){
+                    swal(res.msg, {
+                        icon: "success",
+                    }).then(function () {
+                        window.setTimeout(function () {
+                            window.location.reload();
+                        }, 1000);
+                    });
+                } else {
+                    return swal("发生错误!", res.msg, "error");
+                }
+            }
+        })
+        $("#smsEmail").click(function(){
+            $.ajax({
+                data: $('#emailForm').serialize() + "&sms_type=1&bind_type=1",
+            });
+        });
+        $("#smsPhone").click(function(){
+            $.ajax({
+                data: $('#phoneForm').serialize() + "&sms_type=1&bind_type=2",
+            });
+        });
+        $("#bindEmailData").click(function(){
+            $.ajax({
+                data: $('#emailForm').serialize() + "&bind_type=1",
+            });
+        });
+        $("#bindPhoneData").click(function(){
+            $.ajax({
+                data: $('#phoneForm').serialize() + "&bind_type=2",
+            });
+        });
+        $("#userInfo").click(function(){
+            $.ajax({
+                url:'{fun:ctr("addUserInfo")}',
+                data: $('#userInfoForm').serialize(),
+            });
+        });
+    });
+
+
+</script>
+</body>
+</html>

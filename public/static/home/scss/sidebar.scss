@@ -1,0 +1,256 @@
+/*
+Template Name: Material Press Admin
+Author: Themedesigner
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+
+
+/*******************
+Main sidebar
+******************/
+
+.left-sidebar {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 20;
+    padding:60px 15px 0px;
+    background: $sidebar;
+    box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+}
+
+.fix-sidebar .left-sidebar{
+    position: fixed;
+}
+
+/*******************
+sidebar navigation
+******************/
+
+.scroll-sidebar {
+    margin: 0 auto;
+    max-width: 1280px;
+    padding:0 15px;
+}
+
+.collapse.in {
+    display: block;
+}
+
+.sidebar-nav {
+    background: $sidebar;
+    padding: 0px;
+    ul {
+        margin: 0px;
+        padding: 0px;
+        li {
+            list-style: none;
+             a {
+                color: $sidebar-text;
+                padding: 14px 10px 14px;
+                display: block;
+                font-size: 14px;
+                &.active,
+                &:hover {
+                    color: $themecolor;
+                    i{
+                        color: $themecolor;
+                    }
+                }
+
+                &.active {
+                    font-weight: 500;
+                    color: $dark;
+                }
+            }
+            ul {
+                padding:15px;
+                top: 53px;
+                
+                li a {
+                    padding:7px 10px;
+                }
+                ul {
+                    padding-left: 15px;
+                    padding-top:0px;
+                }
+            }
+            &.nav-small-cap,
+            &.nav-devider {
+               display: none; 
+            }    
+        }
+    }
+    > ul > li > a {
+        
+        i {
+            width: 27px;
+            font-size: 19px;
+            display: inline-block;
+            vertical-align: middle;
+            color: $sidebar-icons;
+        }
+        .label {
+            float: right;
+            margin-top: 6px;
+        }
+        &.active {
+            font-weight: 400;
+            background:#242933;
+            color: $themecolor-alt;
+        }
+    }
+    > ul > li {
+        
+        &.active > a {
+            color: $themecolor;
+            font-weight: 500;
+            i {
+                color: $themecolor;
+            }
+        }
+    }
+}
+.sidebar-nav .has-arrow {
+    position: relative;
+    &::after {
+        position: absolute;
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-width: 1px 0 0 1px;
+        border-style: solid;
+        border-color: $sidebar-text;
+        right: 1em;
+        -webkit-transform: rotate(135deg) translate(0, -50%);
+        -ms-transform: rotate(135deg) translate(0, -50%);
+        -o-transform: rotate(135deg) translate(0, -50%);
+        transform: rotate(135deg) translate(0, -50%);
+        -webkit-transform-origin: top;
+        -ms-transform-origin: top;
+        -o-transform-origin: top;
+        transform-origin: top;
+        top: 47%;
+        -webkit-transition: all .3s ease-out;
+        -o-transition: all .3s ease-out;
+        transition: all .3s ease-out;
+    }
+}
+
+.sidebar-nav .active > .has-arrow::after,
+.sidebar-nav li > .has-arrow.active::after,
+.sidebar-nav .has-arrow[aria-expanded="true"]::after {
+    -webkit-transform: rotate(-135deg) translate(0, -50%);
+    -ms-transform: rotate(-135deg) translate(0, -50%);
+    -o-transform: rotate(-135deg) translate(0, -50%);
+    top: 45%;
+    width: 7px;
+    transform: rotate(-135deg) translate(0, -50%);
+}
+
+.sidebar-nav #sidebarnav > li > a.has-arrow:after {
+    display: none;
+}
+
+@media(max-width:1024px) and (min-width:700px){
+    .sidebar-nav ul li a i{
+        display: none;
+    }
+}
+
+/****************
+When click on sidebar toggler and also for tablet
+*****************/
+
+@media(min-width:768px) {
+    
+    .sidebar-nav > ul > li {
+        float:left;
+        &:hover > a,
+        &:hover > a i {
+            color: $themecolor;
+        }
+    }
+    .sidebar-nav > ul > li:last-child ul {
+        right: 0px;
+    }
+    
+    .sidebar-nav #sidebarnav li.two-column > ul {
+        width: 400px;
+        li {
+            width: 49%;
+            vertical-align: top;
+            display: inline-block;
+        }
+    }
+    .sidebar-nav #sidebarnav li.three-column > ul {
+        width: 550px;
+        li {
+            width: 32.5%;
+            vertical-align: top;
+            display: inline-block;
+        }
+    }
+    
+    .sidebar-nav #sidebarnav > li > a.has-arrow:after {
+        display: none;
+    }
+
+    .sidebar-nav #sidebarnav li {
+        position: relative;
+    }
+
+    .sidebar-nav #sidebarnav > li > ul {
+        position: absolute;
+        z-index: 1001;
+        width: 240px;
+        background: $white;
+        display: none;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.09);
+    }
+
+    .sidebar-nav #sidebarnav > li:hover > ul {
+        height: auto !important;
+        overflow: auto;
+    }
+
+    .sidebar-nav #sidebarnav > li:hover > ul,
+    .sidebar-nav #sidebarnav > li:hover > ul.collapse {
+        display: block;
+        max-height: 440px;
+    }
+}
+@media(min-width:768px) and (max-width:768px) {
+    .sidebar-nav > ul > li > ul{
+        top:48px;
+    }
+}
+@media(max-width:767px) {
+    .mini-sidebar {
+        .left-sidebar {
+            position: fixed;
+            display: none;
+            height: 100%;
+            width: 260px;
+            padding: 60px 0 0 0px;
+            overflow: auto;
+        }
+        &.show-sidebar {
+            .left-sidebar,
+            .sidebar-footer {
+                display: block;
+            }
+        }
+        .sidebar-nav #sidebarnav > li > ul {
+            padding: 0 10px;
+            li a{
+                padding: 10px 15px 10px 35px;
+            }
+        }
+            
+    } 
+    .sidebar-nav #sidebarnav > li > a.has-arrow:after {
+        display: block;
+    }
+}

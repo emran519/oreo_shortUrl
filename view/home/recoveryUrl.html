@@ -1,0 +1,133 @@
+{include 'home/common/head'}
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h3 class="text-themecolor">恢复长链</h3>
+        </div>
+        <div class="col-md-7 align-self-center">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">基本</a></li>
+                <li class="breadcrumb-item active">恢复长链</li>
+            </ol>
+        </div>
+        <div>
+            <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!-- Row -->
+        <div class="row">
+            <div class="col-12">
+                <!-- Row -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-lg-12 col-md-12">
+                        <!-- Card -->
+                        <div class="card text-center">
+                            <img class="card-img-top img-responsive" src="https://cdn.2free.cn/2021/03/02/3531815327.jpg" style="max-height: 390px" alt="Card image cap">
+                            <form id="oreoDataAddForm" action="" method="post">
+                            <div class="card-body">
+                                <h4 class="card-title">恢复长链</h4>
+                                <div class="col-md-10" style="margin: auto;">
+                                    <input class="form-control" type="text" name="short_name" value="" placeholder="请输入短连接 / 后面的地址">
+                                </div>
+                                <br>
+                                <button onclick="longDomain()" type="button" class="btn btn-info">转换</button>
+                            </div>
+                            </form>
+
+                            <div class="card" style="display: none" id="callback">
+                                <div class="card-body collapse show">
+                                    <h4 class="card-title">链接地址为:</h4>
+                                    <p class="card-text">  <input class="form-control" type="text" id="longUrlAdd"></p>
+                                    <button onclick="copyUrl()" class="btn btn-danger">复制</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Card -->
+                    </div>
+                </div>
+                <!-- Row -->
+            </div>
+        </div>
+        <!-- End Row -->
+        <!-- Row -->
+        <div class="right-sidebar">
+            <div class="slimscrollright">
+                <div class="rpanel-title"> 状态栏颜色 <span><i class="ti-close right-side-toggle"></i></span> </div>
+                <div class="r-panel-body">
+                    <ul id="themecolors" class="m-t-20">
+                        <li><b>带浅色侧边栏</b></li>
+                        <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
+                        <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
+                        <li><a href="javascript:void(0)" data-theme="red" class="red-theme">3</a></li>
+                        <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme working">4</a></li>
+                        <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
+                        <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
+                        <li class="d-block m-t-30"><b>带深色侧边栏</b></li>
+                        <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
+                        <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
+                        <li><a href="javascript:void(0)" data-theme="red-dark" class="red-dark-theme">9</a></li>
+                        <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme">10</a></li>
+                        <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
+                        <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme ">12</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Right sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <footer class="footer">
+        © 2021 Oreo(饼干) 2free.cn 原创开发
+    </footer>
+</div>
+</div>
+{include 'home/common/foot'}
+<script src="__HOME__/static/index/js/sweetalert.min.js"></script>
+<script>
+    function copyUrl(){
+        var copyobject=document.getElementById("longUrlAdd");
+        copyobject.select();
+        document.execCommand("Copy");
+        alert('复制成功')
+
+    }
+    function longDomain(){
+        $.ajax({
+            type: "POST",
+            url:'{fun:ctr("longUrlFormat")}',
+            data: $('#oreoDataAddForm').serialize(),
+            dataType: 'json',
+            cache:false,
+            success : function(res) {
+                if(res.code == 200){
+                    $("#callback").attr("style","display:block;background-color: bisque;");
+                    $("#longUrlAdd").val(res.data)
+                } else {
+                    $("#callback").attr("style","display:none;");
+                    swal("发生错误!", res.msg, "error");
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>
